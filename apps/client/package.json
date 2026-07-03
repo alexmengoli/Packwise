@@ -1,5 +1,5 @@
 {
-  "name": "@packwise/web",
+  "name": "@packwise/client",
   "version": "0.0.1",
   "author": "Alex Mengoli (MxApps)",
   "packageManager": "pnpm@10.33.0",
@@ -61,5 +61,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.9.0"
   },
-  "description": "PackWise Ionic + Angular web app."
+  "description": "PackWise Ionic + Angular client app."
 }

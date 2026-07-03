@@ -7,10 +7,10 @@
   "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "start": "pnpm --filter @packwise/web start",
-    "build": "pnpm --filter @packwise/shared build && pnpm --filter @packwise/web build",
-    "test": "pnpm --filter @packwise/web test",
-    "lint": "pnpm --filter @packwise/web lint",
+    "start": "pnpm --filter @packwise/client start",
+    "build": "pnpm --filter @packwise/shared build && pnpm --filter @packwise/client build",
+    "test": "pnpm --filter @packwise/client test",
+    "lint": "pnpm --filter @packwise/client lint",
     "build:shared": "pnpm --filter @packwise/shared build"
   }
 }

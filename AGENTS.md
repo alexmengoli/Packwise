@@ -17,7 +17,7 @@ Do not make cloud sync, authentication, or internet access required for the core
 
 This repo is a pnpm monorepo named `packwise`.
 
-- `apps/web`: the complete Ionic + Angular client application.
+- `apps/client`: the complete Ionic + Angular client application.
 - `packages/shared`: framework-independent TypeScript models, types, and reusable domain utilities.
 - `package.json`: root workspace scripts that delegate to packages.
 - `pnpm-workspace.yaml`: pnpm workspace package discovery.
@@ -25,7 +25,7 @@ This repo is a pnpm monorepo named `packwise`.
 - `README.md`: human-facing project overview and commands.
 - `.gitignore`: repository-wide ignore rules.
 
-Keep app-specific UI and Ionic/Angular code inside `apps/web`. Keep reusable business types and pure domain logic inside `packages/shared`. Do not put persistence, browser APIs, Angular services, or UI concerns in `packages/shared`.
+Keep app-specific UI and Ionic/Angular code inside `apps/client`. Keep reusable business types and pure domain logic inside `packages/shared`. Do not put persistence, browser APIs, Angular services, or UI concerns in `packages/shared`.
 
 ## Package manager
 
@@ -34,7 +34,7 @@ Use pnpm for all workspace dependency and script operations.
 - Run commands from the repository root when possible.
 - Use `pnpm install` to install dependencies.
 - Use root scripts such as `pnpm build`, `pnpm lint`, and `pnpm test`.
-- Use workspace filters for package-specific commands, for example `pnpm --filter @packwise/web build` or `pnpm --filter @packwise/shared build`.
+- Use workspace filters for package-specific commands, for example `pnpm --filter @packwise/client build` or `pnpm --filter @packwise/shared build`.
 - Do not use npm, yarn, or package-lock files in this repository unless a task explicitly requires a migration.
 
 ## Core engineering rules

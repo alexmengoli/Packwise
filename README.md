@@ -4,7 +4,7 @@ PackWise is an offline-first packing organizer built as a pnpm monorepo.
 
 ## Workspace
 
-- `apps/web`: Ionic + Angular client application.
+- `apps/client`: Ionic + Angular client application.
 - `packages/shared`: shared TypeScript models and framework-independent domain utilities.
 
 ## Commands

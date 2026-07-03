@@ -8,7 +8,7 @@ importers:
 
   .: {}
 
-  apps/web:
+  apps/client:
     dependencies:
       '@angular/animations':
         specifier: 20.3.25
