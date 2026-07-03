@@ -81,6 +81,7 @@ Keep concerns separated:
 - Local storage access should be isolated behind a small data layer.
 - Sync code, when added, must be isolated from local-only functionality.
 - The app must continue working when offline or signed out.
+- In the Ionic + Angular app, prefer Angular standalone components, `loadComponent`, `bootstrapApplication`, and Ionic standalone APIs over new `NgModule` files.
 
 When changing persisted data:
 
