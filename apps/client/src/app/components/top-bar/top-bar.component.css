@@ -1,25 +1,24 @@
 :host {
+  display: block;
   position: sticky;
   top: 0;
   z-index: 10;
-  display: block;
-  border-bottom: 0.0625rem solid var(--mat-sys-outline-variant);
   background: var(--mat-sys-surface-container);
 }
 
 .top-bar {
-  min-height: 4rem;
-  padding-inline: 1rem;
   background: var(--mat-sys-surface-container);
+  padding-inline: 1rem;
+  min-height: 4rem;
   color: var(--mat-sys-on-surface);
 }
 
 .top-bar__brand {
-  font-size: 0.95rem;
+  color: var(--mat-sys-primary);
   font-weight: 700;
+  font-size: 0.95rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--mat-sys-primary);
 }
 
 .top-bar__spacer {
@@ -28,8 +27,8 @@
 
 @media (min-width: 640px) {
   .top-bar {
-    max-width: 64rem;
     margin: 0 auto;
     padding-inline: 1.5rem;
+    max-width: 64rem;
   }
 }
