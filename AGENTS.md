@@ -93,6 +93,9 @@ When changing persisted data:
 ## Code style
 
 - Follow the existing project structure and conventions.
+- In `apps/client`, create pages inside `pages` folders.
+- In `apps/client`, place reusable UI components inside `components` folders.
+- If a component is specific to a single page, keep it alongside that page inside the page component folder, especially when this helps keep the main page template smaller and easier to maintain.
 - Place Angular services in `services` folders and name them with the `.service.ts` suffix.
 - Place shared type-only files in `types` folders and name them with the `.types.ts` suffix.
 - Use clear role suffixes for other file kinds when applicable, such as `.component.ts`, `.directive.ts`, `.pipe.ts`, `.guard.ts`, `.resolver.ts`, `.adapter.service.ts`, and `.repository.service.ts`.
