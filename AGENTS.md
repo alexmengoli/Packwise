@@ -93,13 +93,24 @@ When changing persisted data:
 ## Code style
 
 - Follow the existing project structure and conventions.
+- Place Angular services in `services` folders and name them with the `.service.ts` suffix.
+- Place shared type-only files in `types` folders and name them with the `.types.ts` suffix.
+- Use clear role suffixes for other file kinds when applicable, such as `.component.ts`, `.directive.ts`, `.pipe.ts`, `.guard.ts`, `.resolver.ts`, `.adapter.service.ts`, and `.repository.service.ts`.
 - Prefer explicit, descriptive names.
+- Always declare types explicitly.
+- Do not add explicit type annotations to Angular helper results such as `inject()`, `input()`, `output()`, or `viewChild()`; let Angular infer those types.
+- Always declare method visibility and return types.
+- Use `private readonly` for private dependencies and fields that should not be reassigned.
+- Do not define types or interfaces inside classes; create dedicated type files when new types are needed.
+- Add a short one- or two-word section comment above grouped class-level constants or fields, for example `// constants`, `// injections`, or `// data`.
 - Keep functions and components small and focused.
 - Avoid unnecessary abstractions.
 - Avoid duplicate business logic.
 - Use types consistently where the stack supports them.
 - Prefer composition over large monolithic components.
 - Keep files reasonably small.
+- Do not add comments unless they are necessary; follow clean code principles and let names and structure carry intent.
+- Do not create or add tests.
 
 ## Language
 
@@ -131,8 +142,7 @@ When changing persisted data:
 2. Check whether a similar component, utility, type, or test already exists.
 3. Make the smallest change that fully solves the task.
 4. Avoid unrelated refactors.
-5. Update tests when behavior changes.
-6. Run the relevant linting, formatting, type-checking, and test commands.
+5. Run the relevant linting, formatting, type-checking, and build commands.
 
 ## When completing a task
 
