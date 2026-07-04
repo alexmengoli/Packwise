@@ -19,17 +19,28 @@
             <p>Loading your local data...</p>
           </div>
         } @else {
-          <mat-chip-listbox class="home-page__chips" aria-label="Activities" multiple>
+          <div class="activity-grid" aria-label="Activities" role="group">
             @for (activity of activities(); track activity.id) {
-              <mat-chip-option
-                [selected]="isSelected(activity.id)"
-                [highlighted]="isSelected(activity.id)"
+              <button
+                type="button"
+                class="activity-tile"
+                [class.activity-tile--selected]="isSelected(activity.id)"
+                [attr.aria-pressed]="isSelected(activity.id)"
+                [style.--activity-color]="activity.color ?? 'var(--mat-sys-surface-container-high)'"
                 (click)="toggleActivity(activity.id)"
               >
-                {{ activity.name }} ({{ itemCount(activity.id) }})
-              </mat-chip-option>
+                <span class="activity-tile__content">
+                  <span class="activity-tile__icon-wrap">
+                    <mat-icon class="activity-tile__icon" aria-hidden="true">{{ activityIcon(activity) }}</mat-icon>
+                  </span>
+                  <span class="activity-tile__text">
+                    <span class="activity-tile__name">{{ activity.name }}</span>
+                    <span class="activity-tile__meta">{{ itemCount(activity.id) }} items</span>
+                  </span>
+                </span>
+              </button>
             }
-          </mat-chip-listbox>
+          </div>
         }
       </mat-card-content>
     </mat-card>

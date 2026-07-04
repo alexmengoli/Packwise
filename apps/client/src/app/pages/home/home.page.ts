@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import type { Activity, Item } from '@packwise/shared';
 
@@ -11,7 +11,7 @@ import { STARTER_ACTIVITIES, STARTER_ITEMS } from './home.data';
 
 @Component({
   selector: 'app-home-page',
-  imports: [MatCardModule, MatCheckboxModule, MatChipsModule, MatProgressBarModule],
+  imports: [MatCardModule, MatCheckboxModule, MatIconModule, MatProgressBarModule],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
@@ -47,12 +47,19 @@ export class HomePage {
     }
 
     return this.items().filter((item: Item): boolean =>
-      item.activityIds.some((activityId: string): boolean => selectedActivityIds.includes(activityId)),
+      item.activityIds.some((activityId: string): boolean =>
+        selectedActivityIds.includes(activityId),
+      ),
     );
   });
 
+  protected activityIcon(activity: Activity): string {
+    return activity.icon ?? 'hiking';
+  }
+
   protected itemCount(activityId: string): number {
-    return this.items().filter((item: Item): boolean => item.activityIds.includes(activityId)).length;
+    return this.items().filter((item: Item): boolean => item.activityIds.includes(activityId))
+      .length;
   }
 
   protected toggleActivity(activityId: string): void {
