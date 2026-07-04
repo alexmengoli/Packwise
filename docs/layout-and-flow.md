@@ -92,6 +92,7 @@ To bring
 - The final card in the row should be a `+` action for adding a new activity.
 - Activity cards may show a small item count, for example "Camping 12", if it helps the user understand the size of each packing context.
 - Selected cards should be visually clear and accessible.
+- Activity colors should follow the Coastal Gear HSL line: keep saturation and lightness fixed at `88%` and `31%`, and let users choose only the hue. Store activity colors as `hsl(H 88% 31%)` so custom colors stay visually related to the primary `#005f73`, secondary `#0a9396`, and tertiary `#ee9b00` palette.
 
 ## Packing List
 

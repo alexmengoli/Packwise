@@ -6,7 +6,7 @@ export const STARTER_ACTIVITIES: Activity[] = [
   {
     id: 'starter-camping',
     name: 'Camping',
-    color: '#0f766e',
+    color: 'hsl(177 88% 31%)',
     icon: 'forest',
     createdAt: CREATED_AT,
     updatedAt: CREATED_AT,
@@ -14,7 +14,7 @@ export const STARTER_ACTIVITIES: Activity[] = [
   {
     id: 'starter-beach',
     name: 'Beach',
-    color: '#0284c7',
+    color: 'hsl(199 88% 31%)',
     icon: 'beach_access',
     createdAt: CREATED_AT,
     updatedAt: CREATED_AT,
@@ -22,7 +22,7 @@ export const STARTER_ACTIVITIES: Activity[] = [
   {
     id: 'starter-mtb',
     name: 'MTB',
-    color: '#ca8a04',
+    color: 'hsl(39 88% 31%)',
     icon: 'pedal_bike',
     createdAt: CREATED_AT,
     updatedAt: CREATED_AT,
@@ -30,7 +30,7 @@ export const STARTER_ACTIVITIES: Activity[] = [
   {
     id: 'starter-gym',
     name: 'Gym',
-    color: '#7c3aed',
+    color: 'hsl(263 88% 31%)',
     icon: 'fitness_center',
     createdAt: CREATED_AT,
     updatedAt: CREATED_AT,
