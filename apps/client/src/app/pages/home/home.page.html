@@ -19,27 +19,29 @@
             <p>Loading your local data...</p>
           </div>
         } @else {
-          <div class="activity-grid" aria-label="Activities" role="group">
-            @for (activity of activities(); track activity.id) {
-              <button
-                type="button"
-                class="activity-tile"
-                [class.activity-tile--selected]="isSelected(activity.id)"
-                [attr.aria-pressed]="isSelected(activity.id)"
-                [style.--activity-color]="activity.color ?? 'var(--mat-sys-surface-container-high)'"
-                (click)="toggleActivity(activity.id)"
-              >
-                <span class="activity-tile__content">
-                  <span class="activity-tile__icon-wrap">
-                    <mat-icon class="activity-tile__icon" aria-hidden="true">{{ activityIcon(activity) }}</mat-icon>
+          <div class="activity-grid-shell">
+            <div class="activity-grid" aria-label="Activities" role="group">
+              @for (activity of activities(); track activity.id) {
+                <button
+                  type="button"
+                  class="activity-tile"
+                  [class.activity-tile--selected]="isSelected(activity.id)"
+                  [attr.aria-pressed]="isSelected(activity.id)"
+                  [style.--activity-color]="activity.color ?? 'var(--mat-sys-surface-container-high)'"
+                  (click)="toggleActivity(activity.id)"
+                >
+                  <span class="activity-tile__content">
+                    <span class="activity-tile__icon-wrap">
+                      <mat-icon class="activity-tile__icon" aria-hidden="true">{{ activityIcon(activity) }}</mat-icon>
+                    </span>
+                    <span class="activity-tile__text">
+                      <span class="activity-tile__name">{{ activity.name }}</span>
+                      <span class="activity-tile__meta">{{ itemCount(activity.id) }} items</span>
+                    </span>
                   </span>
-                  <span class="activity-tile__text">
-                    <span class="activity-tile__name">{{ activity.name }}</span>
-                    <span class="activity-tile__meta">{{ itemCount(activity.id) }} items</span>
-                  </span>
-                </span>
-              </button>
-            }
+                </button>
+              }
+            </div>
           </div>
         }
       </mat-card-content>
