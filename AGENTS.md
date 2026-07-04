@@ -101,6 +101,10 @@ When changing persisted data:
 - Prefer composition over large monolithic components.
 - Keep files reasonably small.
 
+## Language
+
+- Use English for product UI copy, documentation, code comments, labels, sample data, and user-facing text unless a task explicitly requests another language.
+
 ## UI expectations
 
 - Design mobile-first.

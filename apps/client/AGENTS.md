@@ -18,6 +18,15 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use `NgOptimizedImage` for all static images.
   - `NgOptimizedImage` does not work for inline base64 images.
 
+## Angular Material
+
+- Prefer Angular Material components and interaction patterns for client UI unless a task explicitly requires a custom control.
+- The client currently uses `@angular/material` `^22.0.3`; check the current Angular Material documentation at https://material.angular.dev/ when choosing component APIs or examples.
+- Use current Angular Material components such as buttons, icon buttons, icons, cards, lists, dialogs, bottom sheets, menus, form fields, chips, checkboxes, tabs, snack bars, and toolbars where they fit the product flow.
+- Build the main app shell around a mobile-first bottom navigation pattern. If Angular Material does not provide an exact bottom navigation primitive, compose it from current Material buttons/icons with Angular Router state and accessible labels.
+- Keep Material usage mobile-first, accessible, and visually restrained.
+- Do not recreate Material primitives with custom CSS when an Angular Material component already fits the need.
+
 ## Accessibility Requirements
 
 - It MUST pass all AXE checks.
