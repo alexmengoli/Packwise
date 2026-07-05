@@ -39,6 +39,7 @@ export class HomePage {
     return items.length > 0 ? items : STARTER_ITEMS;
   });
   protected readonly selectedActivityIds = this.selectedActivityIdsSignal.asReadonly();
+  protected readonly hasPackedItems = computed((): boolean => this.packedItemIdsSignal().length > 0);
   protected readonly packingItems = computed((): Item[] => {
     const selectedActivityIds: string[] = this.selectedActivityIds();
 
@@ -76,6 +77,10 @@ export class HomePage {
         ? packedItemIds.filter((currentId: string): boolean => currentId !== itemId)
         : [...packedItemIds, itemId],
     );
+  }
+
+  protected clearPackedItems(): void {
+    this.packedItemIdsSignal.set([]);
   }
 
   protected isPacked(itemId: string): boolean {

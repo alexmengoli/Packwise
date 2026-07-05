@@ -51,6 +51,16 @@
         <div class="home-section__heading">
           <h2 class="home-section__title">To bring</h2>
           <p class="home-section__subtitle">Use the checklist as you pack.</p>
+          <button
+            type="button"
+            class="home-section__reset"
+            aria-label="Clear checked items"
+            title="Clear checked items"
+            [disabled]="!hasPackedItems()"
+            (click)="clearPackedItems()"
+          >
+            <mat-icon aria-hidden="true">restart_alt</mat-icon>
+          </button>
         </div>
 
         @if (loading()) {

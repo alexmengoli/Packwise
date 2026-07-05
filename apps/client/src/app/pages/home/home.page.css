@@ -49,11 +49,14 @@
 
 .home-section__heading {
   display: grid;
+  grid-template-columns: 1fr auto;
   gap: 0.25rem;
+  align-items: start;
 }
 
 .home-section__title,
 .home-section__subtitle {
+  grid-column: 1;
   margin: 0;
 }
 
@@ -65,6 +68,40 @@
 .home-section__subtitle {
   color: var(--mat-sys-on-surface-variant);
   line-height: 1.5;
+}
+
+.home-section__reset {
+  display: inline-grid;
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  place-items: center;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+  cursor: pointer;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.home-section__reset:hover:not(:disabled),
+.home-section__reset:focus-visible {
+  background: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface);
+}
+
+.home-section__reset:focus-visible {
+  outline: 0.1875rem solid var(--mat-sys-primary);
+  outline-offset: 0.125rem;
+}
+
+.home-section__reset:disabled {
+  cursor: default;
+  opacity: 0.38;
 }
 
 .activity-grid-shell {
