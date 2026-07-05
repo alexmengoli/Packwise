@@ -25,6 +25,19 @@
     <mat-icon class="bottom-nav__icon" aria-hidden="true">inventory_2</mat-icon>
     <span class="bottom-nav__label">Library</span>
   </a>
+
+  <a
+    mat-tab-link
+    class="bottom-nav__item"
+    routerLink="/settings"
+    routerLinkActive
+    #settingsLink="routerLinkActive"
+    ariaCurrentWhenActive="page"
+    [active]="settingsLink.isActive"
+  >
+    <mat-icon class="bottom-nav__icon" aria-hidden="true">settings</mat-icon>
+    <span class="bottom-nav__label">Settings</span>
+  </a>
 </nav>
 
 <mat-tab-nav-panel #bottomNavPanel />
@@ -53,5 +66,17 @@
   >
     <mat-icon class="desktop-nav__icon" aria-hidden="true">inventory_2</mat-icon>
     <span class="desktop-nav__label">Library</span>
+  </a>
+
+  <a
+    class="desktop-nav__item"
+    routerLink="/settings"
+    routerLinkActive="desktop-nav__item--active"
+    #desktopSettingsLink="routerLinkActive"
+    ariaCurrentWhenActive="page"
+    [attr.aria-label]="desktopSettingsLink.isActive ? 'Settings, current page' : 'Settings'"
+  >
+    <mat-icon class="desktop-nav__icon" aria-hidden="true">settings</mat-icon>
+    <span class="desktop-nav__label">Settings</span>
   </a>
 </nav>

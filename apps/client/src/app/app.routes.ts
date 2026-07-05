@@ -9,4 +9,8 @@ export const routes: Routes = [
     path: 'library',
     loadComponent: () => import('./pages/library/library.page').then((module) => module.LibraryPage),
   },
+  {
+    path: 'settings',
+    loadComponent: () => import('./pages/settings/settings.page').then((module) => module.SettingsPage),
+  },
 ];
