@@ -93,9 +93,15 @@
                     tabindex="-1"
                     [checked]="isPacked(item.id)"
                   >
-                    <span class="packing-item__name" [class.packing-item__name--packed]="isPacked(item.id)">{{
-                      item.name
-                    }}</span>
+                    <span class="packing-item__label">
+                      <span class="packing-item__name" [class.packing-item__name--packed]="isPacked(item.id)">{{
+                        item.name
+                      }}</span>
+
+                      @if (item.mandatory) {
+                        <span class="packing-item__chip">All activities</span>
+                      }
+                    </span>
                   </mat-checkbox>
 
                   @if (item.description) {

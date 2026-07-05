@@ -267,8 +267,28 @@
   pointer-events: none;
 }
 
+.packing-item__label {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 .packing-item__name--packed {
   text-decoration: line-through;
+}
+
+.packing-item__chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--mat-sys-secondary-container);
+  padding: 0.125rem 0.5rem;
+  min-height: 1.375rem;
+  color: var(--mat-sys-on-secondary-container);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .packing-item__description {

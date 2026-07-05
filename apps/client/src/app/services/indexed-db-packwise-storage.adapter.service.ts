@@ -81,7 +81,8 @@ export class IndexedDbPackwiseStorageAdapterService {
         resolve: (value: PackwiseDataSnapshot | undefined) => void,
         reject: (reason?: unknown) => void,
       ) => {
-        const request: IDBRequest<PackwiseDataSnapshot | undefined> = store.get(LOCAL_SNAPSHOT_ID);
+        const request: IDBRequest<PackwiseDataSnapshot | undefined> =
+          store.get(LOCAL_SNAPSHOT_ID);
 
         request.onsuccess = (): void => resolve(request.result);
         request.onerror = (): void => reject(request.error);

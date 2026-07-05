@@ -5,6 +5,7 @@ export interface Item {
   weight?: string;
   size?: string;
   notes?: string;
+  mandatory: boolean;
   activityIds: string[];
   createdAt: string;
   updatedAt: string;

@@ -11,6 +11,8 @@ export type CreateActivityInput = Omit<Activity, 'id' | 'createdAt' | 'updatedAt
 
 export type UpdateActivityInput = Partial<CreateActivityInput>;
 
-export type CreateItemInput = Omit<Item, 'id' | 'createdAt' | 'updatedAt'>;
+export type CreateItemInput = Omit<Item, 'id' | 'createdAt' | 'updatedAt' | 'activityIds'> & {
+  activityIds?: string[];
+};
 
 export type UpdateItemInput = Partial<CreateItemInput>;

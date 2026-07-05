@@ -51,7 +51,7 @@ export class ItemRepositoryService {
     const item: Item = {
       ...input,
       id: crypto.randomUUID(),
-      activityIds: [...input.activityIds],
+      activityIds: input.activityIds ? [...input.activityIds] : [],
       createdAt: now,
       updatedAt: now,
     };

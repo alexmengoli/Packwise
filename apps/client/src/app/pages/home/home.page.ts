@@ -47,10 +47,12 @@ export class HomePage {
       return [];
     }
 
-    return this.items().filter((item: Item): boolean =>
-      item.activityIds.some((activityId: string): boolean =>
-        selectedActivityIds.includes(activityId),
-      ),
+    return this.items().filter(
+      (item: Item): boolean =>
+        item.mandatory ||
+        item.activityIds.some((activityId: string): boolean =>
+          selectedActivityIds.includes(activityId),
+        ),
     );
   });
 
@@ -59,8 +61,9 @@ export class HomePage {
   }
 
   protected itemCount(activityId: string): number {
-    return this.items().filter((item: Item): boolean => item.activityIds.includes(activityId))
-      .length;
+    return this.items().filter(
+      (item: Item): boolean => item.mandatory || item.activityIds.includes(activityId),
+    ).length;
   }
 
   protected toggleActivity(activityId: string): void {
