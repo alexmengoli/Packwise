@@ -21,7 +21,7 @@
             mat-flat-button
             type="button"
             class="data-actions__button"
-            [disabled]="busy()"
+            [disabled]="busy() || !hasLocalData()"
             (click)="exportData()"
           >
             <mat-icon aria-hidden="true">download</mat-icon>
@@ -55,6 +55,45 @@
         @if (errorMessage()) {
           <p class="settings-message settings-message--error">{{ errorMessage() }}</p>
         }
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="settings-section settings-section--sync">
+      <mat-card-content>
+        <div class="settings-section__heading">
+          <h2 class="settings-section__title">Cloud Sync</h2>
+          <p class="settings-section__subtitle">
+            Optional account sync is planned for backups and multi-device access. Packwise will keep working offline
+            without an account.
+          </p>
+        </div>
+
+        <button mat-stroked-button type="button" class="data-actions__button" disabled>
+          <mat-icon aria-hidden="true">cloud_sync</mat-icon>
+          Login to sync
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card appearance="outlined" class="settings-section settings-section--danger">
+      <mat-card-content>
+        <div class="settings-section__heading">
+          <h2 class="settings-section__title">Delete All Data</h2>
+          <p class="settings-section__subtitle">
+            Permanently remove every activity and item saved locally on this device.
+          </p>
+        </div>
+
+        <button
+          mat-flat-button
+          type="button"
+          class="data-actions__button data-actions__button--danger"
+          [disabled]="busy() || !hasLocalData()"
+          (click)="deleteAllData()"
+        >
+          <mat-icon aria-hidden="true">delete_forever</mat-icon>
+          Delete all data
+        </button>
       </mat-card-content>
     </mat-card>
   </div>

@@ -8,6 +8,7 @@ import type { ConfirmationDialogData } from './confirmation-dialog.types';
   selector: 'app-confirmation-dialog',
   imports: [MatButtonModule, MatDialogModule],
   templateUrl: './confirmation-dialog.component.html',
+  styleUrl: './confirmation-dialog.component.css',
 })
 export class ConfirmationDialogComponent {
   // injections

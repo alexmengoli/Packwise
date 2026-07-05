@@ -32,6 +32,10 @@ export class DataPortabilityService {
 
     await this.storage.saveSnapshot(snapshot);
   }
+
+  public async deleteAllData(): Promise<void> {
+    await this.storage.saveSnapshot(createEmptySnapshot());
+  }
 }
 
 function normalizeSnapshot(data: unknown): PackwiseDataSnapshot {
@@ -46,6 +50,15 @@ function normalizeSnapshot(data: unknown): PackwiseDataSnapshot {
     version: EXPORT_VERSION,
     activities: snapshot.activities,
     items: snapshot.items,
+  };
+}
+
+function createEmptySnapshot(): PackwiseDataSnapshot {
+  return {
+    id: LOCAL_SNAPSHOT_ID,
+    version: EXPORT_VERSION,
+    activities: [],
+    items: [],
   };
 }
 

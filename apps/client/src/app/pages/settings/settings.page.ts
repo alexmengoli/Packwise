@@ -1,8 +1,11 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
+import type { ConfirmationDialogData } from '../../components/confirmation-dialog/confirmation-dialog.types';
 import { ActivityRepositoryService } from '../../services/activity.repository.service';
 import { DataPortabilityService } from '../../services/data-portability.service';
 import { ItemRepositoryService } from '../../services/item.repository.service';
@@ -17,18 +20,30 @@ export class SettingsPage {
   // injections
   private readonly activityRepository = inject(ActivityRepositoryService);
   private readonly dataPortability = inject(DataPortabilityService);
+  private readonly dialog = inject(MatDialog);
   private readonly itemRepository = inject(ItemRepositoryService);
 
   // state
+  protected readonly deleting = signal<boolean>(false);
   protected readonly exporting = signal<boolean>(false);
   protected readonly importing = signal<boolean>(false);
   protected readonly statusMessage = signal<string | undefined>(undefined);
   protected readonly errorMessage = signal<string | undefined>(undefined);
 
   // data
-  protected readonly busy = computed((): boolean => this.exporting() || this.importing());
+  protected readonly busy = computed(
+    (): boolean => this.deleting() || this.exporting() || this.importing(),
+  );
+  protected readonly hasLocalData = computed(
+    (): boolean =>
+      this.activityRepository.activities().length > 0 || this.itemRepository.items().length > 0,
+  );
 
   protected exportData(): void {
+    if (!this.hasLocalData()) {
+      return;
+    }
+
     this.exporting.set(true);
     this.statusMessage.set(undefined);
     this.errorMessage.set(undefined);
@@ -69,6 +84,44 @@ export class SettingsPage {
       .then((): void => this.statusMessage.set('Your local Packwise data was imported.'))
       .catch((error: unknown): void => this.handleError(error, 'Could not import that JSON file.'))
       .finally((): void => this.importing.set(false));
+  }
+
+  protected deleteAllData(): void {
+    if (!this.hasLocalData()) {
+      return;
+    }
+
+    const data: ConfirmationDialogData = {
+      title: 'Delete all local data?',
+      message: 'This removes every Packwise activity and item saved on this device. This cannot be undone.',
+      confirmLabel: 'Delete all',
+    };
+
+    this.dialog
+      .open<ConfirmationDialogComponent, ConfirmationDialogData, boolean>(ConfirmationDialogComponent, {
+        data,
+        maxWidth: 'calc(100vw - 2rem)',
+        width: '24rem',
+      })
+      .afterClosed()
+      .subscribe((confirmed: boolean | undefined): void => {
+        if (!confirmed) {
+          return;
+        }
+
+        this.deleting.set(true);
+        this.statusMessage.set(undefined);
+        this.errorMessage.set(undefined);
+
+        void this.dataPortability
+          .deleteAllData()
+          .then((): Promise<void[]> =>
+            Promise.all([this.activityRepository.refresh(), this.itemRepository.refresh()]),
+          )
+          .then((): void => this.statusMessage.set('All local Packwise data was deleted.'))
+          .catch((error: unknown): void => this.handleError(error, 'Could not delete your data.'))
+          .finally((): void => this.deleting.set(false));
+      });
   }
 
   private downloadJson(json: string): void {

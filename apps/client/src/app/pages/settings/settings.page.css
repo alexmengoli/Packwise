@@ -41,6 +41,15 @@
   overflow: hidden;
 }
 
+.settings-section--danger {
+  border-color: var(--mat-sys-error);
+  background: color-mix(in srgb, var(--mat-sys-error-container) 32%, var(--mat-sys-surface));
+}
+
+.settings-section--danger .settings-section__title {
+  color: var(--mat-sys-error);
+}
+
 .settings-section mat-card-content {
   display: grid;
   gap: 1rem;
@@ -75,6 +84,12 @@
 
 .data-actions__button {
   min-height: 2.75rem;
+}
+
+.data-actions__button--danger {
+  --mat-button-filled-container-color: var(--mat-sys-error);
+  --mat-button-filled-label-text-color: var(--mat-sys-on-error);
+  --mat-button-filled-state-layer-color: var(--mat-sys-on-error);
 }
 
 .data-actions__file {
