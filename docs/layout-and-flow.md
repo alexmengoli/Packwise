@@ -10,6 +10,12 @@ Planned MVP screens:
 - Library
 - Settings
 
+Current implementation:
+
+- Pack is implemented at the root route.
+- The bottom navigation shell exists, but only the Pack destination is wired.
+- Library and Settings are still planned.
+
 ## Navigation Model
 
 Navigation should feel modern, quiet, and mobile-first. The app should use a bottom navigation shell for the main destinations instead of filling the home screen with buttons or hiding core areas inside an overflow menu.
@@ -56,13 +62,28 @@ Primary rule: the Pack screen should expose the packing workflow directly, while
 
 ## Pack
 
-## Purpose
+### Purpose
 
 The first screen should let users immediately understand what to pack for the activity they are about to do. The user should not need to press a separate "Generate list" button. Selecting activities should update the packing list instantly.
 
 This keeps PackWise focused on its core promise: open the app, choose the context, and see what to bring.
 
-## Layout
+### Current Status
+
+The current Pack screen is implemented as the home page. It shows:
+
+- A heading and short explanation.
+- A two-row horizontally scrollable activity grid.
+- Multi-select activity tiles with icon, color, and item count.
+- A live "To bring" checklist.
+- Keyboard-toggleable packing rows.
+- A clear checked-items action.
+- Loading and empty states.
+
+When there is no saved local data, the page uses starter camping, beach, MTB, and gym data as a
+non-persisted first-run preview.
+
+### Layout
 
 The screen is a single mobile-first workspace:
 
@@ -84,7 +105,7 @@ To bring
 ☐ Sunscreen
 ```
 
-## Activity Row
+### Activity Row
 
 - Activities should be displayed as compact selectable cards.
 - The row should scroll horizontally on small screens.
@@ -93,8 +114,10 @@ To bring
 - Activity cards may show a small item count, for example "Camping 12", if it helps the user understand the size of each packing context.
 - Selected cards should be visually clear and accessible.
 - Activity colors should follow the Coastal Gear HSL line: keep saturation and lightness fixed at `88%` and `31%`, and let users choose only the hue. Store activity colors as `hsl(H 88% 31%)` so custom colors stay visually related to the primary `#005f73`, secondary `#0a9396`, and tertiary `#ee9b00` palette.
+- The current implementation uses a two-row horizontal activity grid rather than a single chip row.
+- The `+` activity action is planned but not implemented yet.
 
-## Packing List
+### Packing List
 
 - The packing list appears below the activity row and scrolls naturally with the page.
 - The list updates immediately when activities are selected or deselected.
@@ -108,11 +131,11 @@ Suggested empty state:
 Select one or more activities to see what to bring.
 ```
 
-## Desktop Behavior
+### Desktop Behavior
 
 The same model should work on desktop and tablet. The activity row can remain horizontal, with more cards visible at once. The packing list can stay below the row for simplicity, unless later usage shows that a side-by-side layout would improve scanning.
 
-## Design Principles
+### Design Principles
 
 - Keep the screen fast, simple, and low-friction.
 - Avoid wizard-style steps for the main packing flow.

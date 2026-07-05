@@ -32,10 +32,35 @@ Example:
   "id": "item-1",
   "name": "Sunscreen",
   "description": "SPF 50 protection",
-  "is_optional": false,
+  "mandatory": false,
+  "activityIds": ["activity-beach"],
   "notes": "Check the expiration date"
 }
 ```
+
+Items can be tied to zero or more activities. Items marked as `mandatory` are shown for every
+selected activity.
+
+### Activities
+
+An activity represents a context the user is packing for, such as Beach, Camping, MTB, Hiking, or
+Gym. Activities can include an optional display color and icon identifier.
+
+### Local Snapshot
+
+The current client stores local data in IndexedDB as a single snapshot object:
+
+```json
+{
+  "id": "local",
+  "version": 1,
+  "activities": [],
+  "items": []
+}
+```
+
+The storage adapter can migrate older separate `activities` and `items` object stores into the
+snapshot format when found.
 
 ## Initial Data Model
 
@@ -48,8 +73,9 @@ Represents a physical item that can be included in one or more packing lists.
 | `id`          | UUID / string | Yes      | Unique item identifier.                                 |
 | `name`        | string        | Yes      | Item name.                                              |
 | `description` | string        | No       | Free-form item description.                             |
-| `is_optional` | boolean       | No       | Whether the item is optional rather than essential.     |
-| `weight`      | number        | No       | Item weight, ideally stored in grams.                   |
+| `mandatory`   | boolean       | Yes      | Whether the item appears for every selected activity.   |
+| `activityIds` | string[]      | Yes      | Activities this item belongs to.                        |
+| `weight`      | string        | No       | Item weight or weight note.                             |
 | `size`        | string        | No       | Item size or dimensions, for example `30 x 20 x 10 cm`. |
 | `notes`       | string        | No       | Additional notes about the item.                        |
 | `created_at`  | datetime      | Yes      | Creation timestamp.                                     |
@@ -71,24 +97,14 @@ Examples: Beach, Camping, MTB, Hiking, Skiing.
 | `created_at`  | datetime      | Yes      | Creation timestamp.                              |
 | `updated_at`  | datetime      | Yes      | Last update timestamp.                           |
 
-### Item Activities
+### Item Activity Assignments
 
-Join table for the many-to-many relationship between items and activities.
+The current local model stores activity assignments directly on each item as `activityIds`.
 
 One item can belong to multiple activities, and one activity can contain multiple items.
 
-| Field         | Type          | Required | Description                   |
-| ------------- | ------------- | -------- | ----------------------------- |
-| `item_id`     | UUID / string | Yes      | Reference to `Items.id`.      |
-| `activity_id` | UUID / string | Yes      | Reference to `Activities.id`. |
-| `created_at`  | datetime      | Yes      | Creation timestamp.           |
-
-Constraints:
-
-- Primary key: composite key on `item_id` + `activity_id`
-- `item_id` must reference an existing item
-- `activity_id` must reference an existing activity
-- The same item cannot be linked to the same activity more than once
+If a separate backend is added later, it may use a join table internally, but that must remain an
+implementation detail and cannot make the local-first client depend on a server.
 
 ### Packing Lists
 
@@ -100,6 +116,29 @@ Example:
 - Activities: Beach, Hiking, Camping
 - Selected activity: Beach
 - Result: Sunscreen is included in the generated list
+
+Mandatory items are also included, even when they are not assigned to the selected activity.
+
+## Current Implementation
+
+The repository currently includes:
+
+- A pnpm workspace with `apps/client` and `packages/shared`.
+- A standalone Angular client using Angular Material.
+- A Pack screen at the root route.
+- A bottom navigation shell with Pack wired as the only active destination.
+- Starter activities and items shown when there is no local user data yet.
+- Local IndexedDB persistence through `IndexedDbPackwiseStorageAdapterService`.
+- Item and activity repository services with create, update, delete, refresh, loading, and error state.
+- Shared framework-independent `Activity` and `Item` TypeScript interfaces.
+
+Not implemented yet:
+
+- Library screens for item and activity CRUD.
+- Settings screen.
+- Import/export UI.
+- Persisted packed/unpacked checklist state.
+- Tests.
 
 ## Core User Flow
 
