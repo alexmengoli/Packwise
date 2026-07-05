@@ -70,9 +70,10 @@ export class HomePage {
 
   protected createActivity(): void {
     this.dialog
-      .open<ActivityDetailsDialogComponent, undefined, CreateActivityInput | undefined>(
-        ActivityDetailsDialogComponent,
-      )
+      .open<ActivityDetailsDialogComponent, undefined, CreateActivityInput | undefined>(ActivityDetailsDialogComponent, {
+        maxWidth: 'calc(100vw - 1rem)',
+        width: '38rem',
+      })
       .afterClosed()
       .subscribe((input: CreateActivityInput | undefined): void => {
         if (!input) {
@@ -96,8 +97,8 @@ export class HomePage {
       .open<ItemDetailsDialogComponent, { activities: Activity[]; activityIds: string[] }, CreateItemInput | undefined>(
         ItemDetailsDialogComponent,
         {
-          maxWidth: '100vw',
-          width: 'min(100vw, 38rem)',
+          maxWidth: 'calc(100vw - 1rem)',
+          width: '38rem',
           data: {
             activities: this.activities(),
             activityIds: this.selectedActivityIds(),

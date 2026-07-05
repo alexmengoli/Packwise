@@ -115,6 +115,8 @@ export class LibraryPage {
       .open<ActivityDetailsDialogComponent, { activity?: Activity }, CreateActivityInput | undefined>(
         ActivityDetailsDialogComponent,
         {
+          maxWidth: 'calc(100vw - 1rem)',
+          width: '38rem',
           data: {
             activity,
           },
@@ -139,8 +141,8 @@ export class LibraryPage {
       .open<ItemDetailsDialogComponent, { activities: Activity[]; item?: Item }, CreateItemInput | undefined>(
         ItemDetailsDialogComponent,
         {
-          maxWidth: '100vw',
-          width: 'min(100vw, 38rem)',
+          maxWidth: 'calc(100vw - 1rem)',
+          width: '38rem',
           data: {
             activities: this.activities(),
             item,

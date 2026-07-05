@@ -15,17 +15,56 @@
       <textarea matInput formControlName="description" rows="3"></textarea>
     </mat-form-field>
 
-    <div class="details-form__grid">
-      <mat-form-field appearance="outline">
-        <mat-label>Icon</mat-label>
-        <input matInput formControlName="icon" autocomplete="off" />
-        <mat-icon matPrefix aria-hidden="true">{{ form.controls.icon.value || 'hiking' }}</mat-icon>
-      </mat-form-field>
+    <div class="picker-group">
+      <span class="picker-group__label">Icon</span>
+      <div class="icon-picker" aria-label="Activity icon">
+        @for (icon of activityIcons; track icon) {
+          <button
+            mat-icon-button
+            type="button"
+            class="icon-picker__option"
+            [class.icon-picker__option--selected]="form.controls.icon.value === icon"
+            [attr.aria-label]="'Use ' + icon + ' icon'"
+            [attr.aria-pressed]="form.controls.icon.value === icon"
+            [title]="icon"
+            (click)="selectIcon(icon)"
+          >
+            <mat-icon aria-hidden="true">{{ icon }}</mat-icon>
+          </button>
+        }
+      </div>
+    </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Color</mat-label>
-        <input matInput formControlName="color" autocomplete="off" />
-      </mat-form-field>
+    <div class="picker-group">
+      <span class="picker-group__label">Color</span>
+      <div class="color-picker" [style.--selected-color]="hslColor(form.controls.hue.value)">
+        <span class="color-picker__preview" aria-hidden="true"></span>
+        <label class="color-picker__slider">
+          <span class="color-picker__value">Hue {{ form.controls.hue.value }}</span>
+          <input
+            type="range"
+            min="0"
+            max="359"
+            step="1"
+            [value]="form.controls.hue.value"
+            (input)="updateHue($event)"
+          />
+        </label>
+      </div>
+
+      <div class="swatch-picker" aria-label="Activity color">
+        @for (hue of activityHues; track hue) {
+          <button
+            type="button"
+            class="swatch-picker__option"
+            [class.swatch-picker__option--selected]="form.controls.hue.value === hue"
+            [style.--swatch-color]="hslColor(hue)"
+            [attr.aria-label]="'Use hue ' + hue"
+            [attr.aria-pressed]="form.controls.hue.value === hue"
+            (click)="selectHue(hue)"
+          ></button>
+        }
+      </div>
     </div>
   </form>
 </mat-dialog-content>
