@@ -1,4 +1,8 @@
 :host {
+  --app-bottom-nav-height: 5rem;
+
   display: block;
+  box-sizing: border-box;
+  padding-bottom: calc(var(--app-bottom-nav-height) + env(safe-area-inset-bottom));
   min-height: 100dvh;
 }

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { BottomNavComponent } from './components/bottom-nav/bottom-nav.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TopBarComponent],
+  imports: [RouterOutlet, BottomNavComponent],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

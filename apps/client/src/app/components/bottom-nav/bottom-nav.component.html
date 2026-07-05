@@ -1,0 +1,17 @@
+<nav mat-tab-nav-bar class="bottom-nav" [tabPanel]="bottomNavPanel" aria-label="Primary">
+  <a
+    mat-tab-link
+    class="bottom-nav__item"
+    routerLink="/"
+    routerLinkActive
+    #packLink="routerLinkActive"
+    ariaCurrentWhenActive="page"
+    [active]="packLink.isActive"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <mat-icon class="bottom-nav__icon" aria-hidden="true">checklist</mat-icon>
+    <span class="bottom-nav__label">Pack</span>
+  </a>
+</nav>
+
+<mat-tab-nav-panel #bottomNavPanel />
