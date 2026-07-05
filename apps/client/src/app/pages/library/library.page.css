@@ -126,13 +126,10 @@
   display: inline-grid;
   place-items: center;
   border-radius: 999px;
-  background: light-dark(
-    color-mix(in srgb, var(--activity-color) 16%, #fff),
-    color-mix(in srgb, var(--activity-color) 28%, #000)
-  );
+  background: light-dark(color-mix(in srgb,var(--activity-color) 86%,#fff),var(--activity-color));
   width: 2.75rem;
   height: 2.75rem;
-  color: var(--activity-color);
+  color: #fff;
 }
 
 .activity-row__icon {
@@ -236,15 +233,17 @@
 .item-row__label {
   --activity-color: var(--mat-sys-primary);
   justify-content: center;
+  cursor: pointer;
+  border: 0;
   border-radius: 999px;
-  background: light-dark(
-    color-mix(in srgb, var(--activity-color) 16%, #fff),
-    color-mix(in srgb, var(--activity-color) 28%, #000)
-  );
+  background: light-dark(color-mix(in srgb,var(--activity-color) 86%,#fff),var(--activity-color));
   padding: 0.1875rem;
   width: 1.75rem;
+  max-width: 1.75rem;
   height: 1.75rem;
-  color: var(--activity-color);
+  overflow: hidden;
+  color: #fff;
+  font: inherit;
 }
 
 .item-row__label-icon {
@@ -253,11 +252,38 @@
   font-size: 1rem;
 }
 
+.item-row__label-name {
+  display: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-row__label--expanded {
+  gap: 0.25rem;
+  justify-content: start;
+  padding-inline: 0.4375rem 0.625rem;
+  width: auto;
+  max-width: 12rem;
+}
+
+.item-row__label--expanded .item-row__label-name {
+  display: block;
+  max-width: 9rem;
+}
+
+.item-row__label:focus-visible {
+  outline: .1875rem solid var(--mat-sys-primary);
+  outline-offset: 0.125rem;
+}
+
 .item-row__label--unassigned {
   gap: 0.25rem;
+  cursor: default;
   background: #fff3cd;
   padding: 0.1875rem 0.5625rem;
   width: auto;
+  max-width: none;
   color: #664d03;
 }
 

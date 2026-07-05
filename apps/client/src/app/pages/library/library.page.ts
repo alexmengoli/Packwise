@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
@@ -31,6 +31,7 @@ export class LibraryPage {
     (): boolean => this.activityRepository.loading() || this.itemRepository.loading(),
   );
   protected readonly activities = this.activityRepository.activities;
+  protected readonly expandedActivityLabelId = signal<string | undefined>(undefined);
   protected readonly items = this.itemRepository.items;
 
   protected activityIcon(activity: Activity): string {
@@ -111,6 +112,19 @@ export class LibraryPage {
     return !item.mandatory && this.itemActivities(item).length === 0;
   }
 
+  protected isActivityLabelExpanded(item: Item, activity: Activity): boolean {
+    return this.expandedActivityLabelId() === this.activityLabelKey(item, activity);
+  }
+
+  protected toggleActivityLabel(item: Item, activity: Activity): void {
+    const labelId: string = this.activityLabelKey(item, activity);
+
+    this.expandedActivityLabelId.update(
+      (currentLabelId: string | undefined): string | undefined =>
+        currentLabelId === labelId ? undefined : labelId,
+    );
+  }
+
   private openActivityDialog(activity?: Activity): void {
     this.dialog
       .open<ActivityDetailsDialogComponent, { activity?: Activity }, CreateActivityInput | undefined>(
@@ -172,5 +186,9 @@ export class LibraryPage {
         width: '24rem',
       })
       .afterClosed();
+  }
+
+  private activityLabelKey(item: Item, activity: Activity): string {
+    return `${item.id}:${activity.id}`;
   }
 }

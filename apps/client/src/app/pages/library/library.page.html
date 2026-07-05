@@ -149,14 +149,19 @@
                       </span>
                     } @else {
                       @for (activity of itemActivities(item); track activity.id) {
-                        <span
+                        <button
+                          type="button"
                           class="item-row__label"
+                          [class.item-row__label--expanded]="isActivityLabelExpanded(item, activity)"
                           [style.--activity-color]="activity.color ?? 'var(--mat-sys-primary)'"
                           [attr.aria-label]="activity.name"
+                          [attr.aria-pressed]="isActivityLabelExpanded(item, activity)"
                           [title]="activity.name"
+                          (click)="toggleActivityLabel(item, activity)"
                         >
                           <mat-icon class="item-row__label-icon" aria-hidden="true">{{ activityIcon(activity) }}</mat-icon>
-                        </span>
+                          <span class="item-row__label-name">{{ activity.name }}</span>
+                        </button>
                       }
                     }
                   </div>
