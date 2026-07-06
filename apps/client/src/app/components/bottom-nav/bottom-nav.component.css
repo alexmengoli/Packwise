@@ -25,13 +25,22 @@
   height: var(--app-bottom-nav-height);
 }
 
+:host ::ng-deep .bottom-nav .mdc-tab__content,
+:host ::ng-deep .bottom-nav .mdc-tab__text-label {
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .bottom-nav__icon {
-  margin-right: 0.375rem;
+  display: block;
+  margin-right: 0;
 }
 
 .bottom-nav__label {
+  display: block;
   font: var(--mat-sys-label-medium);
   font-weight: 600;
+  line-height: 1.1;
 }
 
 @media (min-width: 640px) {

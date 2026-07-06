@@ -121,8 +121,9 @@
 .activity-row {
   --activity-color: var(--mat-sys-primary);
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto auto;
-  gap: 0.875rem;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  column-gap: 0.375rem;
+  row-gap: 0.875rem;
   align-items: center;
   padding: 0.875rem;
 }
@@ -145,6 +146,7 @@
   display: grid;
   gap: 0.1875rem;
   min-width: 0;
+  padding-inline: 0.5rem;
 }
 
 .activity-row__name,
@@ -167,14 +169,11 @@
 }
 
 .activity-row__count {
-  border-radius: 999px;
-  background: var(--mat-sys-secondary-container);
-  padding: 0.25rem 0.625rem;
-  min-width: max-content;
-  color: var(--mat-sys-on-secondary-container);
+  color: var(--mat-sys-on-surface-variant);
   font-size: 0.75rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
+  opacity: 0.72;
 }
 
 .activity-row__edit,

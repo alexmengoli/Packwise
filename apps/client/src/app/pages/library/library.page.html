@@ -51,13 +51,12 @@
 
                     <span class="activity-row__body">
                       <span class="activity-row__name">{{ activity.name }}</span>
+                      <span class="activity-row__count">{{ itemCount(activity.id) }} items</span>
 
                       @if (activity.description) {
                         <span class="activity-row__description">{{ activity.description }}</span>
                       }
                     </span>
-
-                    <span class="activity-row__count">{{ itemCount(activity.id) }} items</span>
 
                     <button
                       mat-icon-button
