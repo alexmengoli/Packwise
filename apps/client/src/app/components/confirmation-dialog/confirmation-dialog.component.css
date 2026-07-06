@@ -1,5 +1,26 @@
+mat-dialog-content {
+  max-height: min(58dvh, 24rem);
+}
+
+mat-dialog-content p {
+  margin: 0;
+  color: var(--mat-sys-on-surface-variant);
+  line-height: 1.5;
+}
+
+mat-dialog-actions {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .confirmation-dialog__confirm--danger {
   --mat-button-filled-container-color: var(--mat-sys-error);
   --mat-button-filled-label-text-color: var(--mat-sys-on-error);
   --mat-button-filled-state-layer-color: var(--mat-sys-on-error);
+}
+
+@media (max-width: 519px) {
+  mat-dialog-actions button {
+    flex: 1 1 8rem;
+  }
 }

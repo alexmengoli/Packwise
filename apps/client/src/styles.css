@@ -3,3 +3,11 @@
 @import 'tailwindcss';
 
 @source './app/**/*.{html,ts}';
+
+.cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: calc(100vw - 1rem) !important;
+}
+
+.mat-mdc-dialog-container .mat-mdc-dialog-surface {
+  border-radius: 0.75rem;
+}

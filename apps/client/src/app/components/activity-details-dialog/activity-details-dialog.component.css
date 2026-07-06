@@ -11,6 +11,15 @@
   width: 100%;
 }
 
+mat-dialog-content {
+  max-height: min(68dvh, 42rem);
+}
+
+mat-dialog-actions {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .picker-group {
   display: grid;
   gap: 0.625rem;
@@ -90,5 +99,11 @@
 @media (min-width: 520px) {
   .details-form {
     max-width: 36rem;
+  }
+}
+
+@media (max-width: 519px) {
+  mat-dialog-actions button {
+    flex: 1 1 8rem;
   }
 }

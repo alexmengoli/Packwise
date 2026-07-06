@@ -29,7 +29,7 @@
 
 .library-page__title {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-size: 2rem;
   line-height: 1.05;
 }
 
@@ -94,7 +94,11 @@
 
 .library-page__empty--center {
   justify-items: center;
+  border: 1px dashed var(--mat-sys-outline-variant);
+  border-radius: 0.75rem;
+  background: var(--mat-sys-surface-container);
   padding-block: 1.5rem;
+  padding-inline: 1rem;
   text-align: center;
 }
 
@@ -305,6 +309,10 @@
     padding-inline: 1.5rem;
   }
 
+  .library-page__title {
+    font-size: 2.5rem;
+  }
+
   .library-section mat-card-content {
     padding: 1.5rem;
   }
@@ -321,6 +329,10 @@
 
   .library-page__layout {
     max-width: 84rem;
+  }
+
+  .library-page__title {
+    font-size: 3.25rem;
   }
 
   .library-page__columns {

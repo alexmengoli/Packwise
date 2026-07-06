@@ -37,6 +37,10 @@
               <div class="library-page__empty library-page__empty--center">
                 <mat-icon aria-hidden="true">hiking</mat-icon>
                 <p>No activities saved yet.</p>
+                <button mat-stroked-button type="button" (click)="createActivity()">
+                  <mat-icon aria-hidden="true">add</mat-icon>
+                  Create activity
+                </button>
               </div>
             } @else {
               <div class="activity-list" aria-label="Saved activities">
@@ -107,6 +111,10 @@
               <div class="library-page__empty library-page__empty--center">
                 <mat-icon aria-hidden="true">inventory_2</mat-icon>
                 <p>No items saved yet.</p>
+                <button mat-stroked-button type="button" (click)="createItem()">
+                  <mat-icon aria-hidden="true">add</mat-icon>
+                  Create item
+                </button>
               </div>
             } @else {
               <mat-form-field class="item-search" appearance="outline" subscriptSizing="dynamic">

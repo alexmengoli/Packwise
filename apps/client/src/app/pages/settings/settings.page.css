@@ -24,7 +24,7 @@
 
 .settings-page__title {
   margin: 0;
-  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-size: 2rem;
   line-height: 1.05;
 }
 
@@ -101,6 +101,10 @@
     padding-inline: 1.5rem;
   }
 
+  .settings-page__title {
+    font-size: 2.5rem;
+  }
+
   .settings-section mat-card-content {
     padding: 1.5rem;
   }
@@ -113,5 +117,9 @@
 
   .settings-page__layout {
     max-width: 46rem;
+  }
+
+  .settings-page__title {
+    font-size: 3.25rem;
   }
 }

@@ -103,9 +103,26 @@
               <p>Preparing your packing view...</p>
             </div>
           } @else if (selectedActivityIds().length === 0) {
-            <p class="home-page__empty">Select one or more activities to see what to bring.</p>
+            <div class="home-page__empty">
+              <mat-icon aria-hidden="true">checklist</mat-icon>
+              <p>Select one or more activities to see what to bring.</p>
+
+              @if (activities().length === 0) {
+                <button mat-stroked-button type="button" (click)="createActivity()">
+                  <mat-icon aria-hidden="true">add</mat-icon>
+                  Create activity
+                </button>
+              }
+            </div>
           } @else if (packingItems().length === 0) {
-            <p class="home-page__empty">No items match the selected activities yet.</p>
+            <div class="home-page__empty">
+              <mat-icon aria-hidden="true">inventory_2</mat-icon>
+              <p>No items match the selected activities yet.</p>
+              <button mat-stroked-button type="button" (click)="createItem()">
+                <mat-icon aria-hidden="true">add</mat-icon>
+                Create item
+              </button>
+            </div>
           } @else {
             <div class="home-page__list">
               @for (group of packingItemGroups(); track group.id) {

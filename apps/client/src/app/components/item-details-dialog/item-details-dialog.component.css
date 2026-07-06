@@ -11,6 +11,15 @@
   width: 100%;
 }
 
+mat-dialog-content {
+  max-height: min(68dvh, 42rem);
+}
+
+mat-dialog-actions {
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .details-form__grid {
   display: grid;
   gap: 0.875rem;
@@ -52,5 +61,11 @@
 
   .details-form__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 519px) {
+  mat-dialog-actions button {
+    flex: 1 1 8rem;
   }
 }
