@@ -161,6 +161,7 @@ The repository currently includes:
 - A disabled future Cloud Sync entry point in Settings.
 - Local IndexedDB persistence through `IndexedDbPackwiseStorageAdapterService`.
 - Data portability through `DataPortabilityService`.
+- Angular ESLint configured for the client and available through the root `pnpm lint` command.
 - Item and activity repository services with create, update, delete, refresh, loading, and error state.
 - Activity deletion removes that activity reference from existing items.
 - Shared framework-independent `Activity`, `Item`, and item category TypeScript definitions.
@@ -205,7 +206,13 @@ Implemented MVP pieces:
 Remaining MVP pieces:
 
 - Persist packed/unpacked state if that behavior should survive reloads.
-- Refine first-run and empty states.
+- Continue refining first-run and empty states as workflows grow.
+
+Quality notes:
+
+- Keep `pnpm lint` and `pnpm build` green before considering UI work complete.
+- The Angular production build may warn when component CSS exceeds the current `anyComponentStyle` budget. Treat those warnings as CSS organization or budget follow-up work, not as successful optimization.
+- Prioritize mobile spacing, visible focus states, scrollable dialogs, and contextual empty-state actions during UI polish.
 
 ## Future Ideas
 

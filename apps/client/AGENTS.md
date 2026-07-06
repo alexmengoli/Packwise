@@ -28,11 +28,14 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Build the main app shell around a mobile-first bottom navigation pattern. If Angular Material does not provide an exact bottom navigation primitive, compose it from current Material buttons/icons with Angular Router state and accessible labels.
 - Keep Material usage mobile-first, accessible, and visually restrained.
 - Do not recreate Material primitives with custom CSS when an Angular Material component already fits the need.
+- Use snack bars for short import, export, delete, save, and error feedback when the message is transient.
+- Keep dialog content scrollable on small screens and let dialog actions wrap into comfortable tap targets.
 
 ## Accessibility Requirements
 
 - It MUST pass all AXE checks.
 - It MUST follow all WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
+- Custom interactive elements must keep visible `:focus-visible` styles and keyboard activation where relevant.
 
 ### Components
 
@@ -59,6 +62,7 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use native control flow (`@if`, `@for`, `@switch`) instead of `*ngIf`, `*ngFor`, `*ngSwitch`
 - Use the async pipe to handle observables
 - Do not assume globals like (`new Date()`) are available.
+- Empty states should be actionable when the next step is clear, using existing Material buttons and icons.
 
 ## Services
 
@@ -66,3 +70,10 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Use the `providedIn: 'root'` option for singleton services
 - Prefer the `@Service` decorator over `@Injectable({providedIn: 'root'})` for new singleton services (Angular v22+)
 - Use the `inject()` function instead of constructor injection
+- Keep browser storage and file import/export logic in services instead of page components where practical
+
+## Linting
+
+- The client uses Angular ESLint with flat config in `eslint.config.mjs`.
+- Keep `pnpm lint` working from the repository root.
+- Add explicit dev dependencies for packages imported by the lint config; do not rely on transitive dependencies under pnpm.

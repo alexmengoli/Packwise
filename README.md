@@ -42,7 +42,9 @@ Useful package-specific commands:
 ```sh
 pnpm --filter @packwise/client start
 pnpm --filter @packwise/client build
+pnpm --filter @packwise/client lint
 pnpm --filter @packwise/shared build
 ```
 
 There is currently no root `test` script. The root `build` script builds `@packwise/shared` first, then `@packwise/client`.
+The root `lint` script runs the Angular ESLint configuration for the client.

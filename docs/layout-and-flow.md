@@ -145,6 +145,9 @@ The same model should work on desktop and tablet. The activity row can remain ho
 - Avoid making the user explicitly generate a list.
 - Treat the activity selection as a live filter for the packing checklist.
 - Keep all core behavior local-first and fully usable offline.
+- Empty states should help the user continue. If there are no activities, offer activity creation; if selected activities have no matching items, offer item creation.
+- Custom checklist rows, activity tiles, and compact labels must have clear keyboard focus and activation behavior.
+- Use stable type sizes with responsive breakpoints instead of scaling text directly with viewport width.
 
 ## Items Window
 
@@ -197,6 +200,14 @@ Current status:
 - Supports importing a PackWise JSON file after confirmation, replacing the current local snapshot.
 - Supports deleting all local activities and items after a destructive confirmation.
 - Shows optional Cloud Sync as a disabled future entry point; sync is not part of the local-first core.
+
+## Dialogs and Mobile Comfort
+
+- Create and edit flows may use `MatDialog` when the form is short and focused.
+- Dialog content should have a viewport-aware maximum height so small screens can scroll the form without losing access to actions.
+- Dialog actions should wrap on narrow screens and keep comfortable touch targets.
+- Destructive confirmation actions must remain visually red.
+- Transient success and error feedback should use snackbars.
 
 ## Future Sections
 

@@ -49,6 +49,7 @@ Use pnpm for all workspace dependency and script operations.
 - Do not add analytics, tracking, ads, or third-party services unless explicitly requested.
 - Prefer simple, maintainable solutions over clever abstractions.
 - Avoid new dependencies unless they provide a clear benefit.
+- Keep lint tooling usable through `pnpm lint`; if lint dependencies or config change, verify the root command.
 
 ## Product scope
 
@@ -121,6 +122,10 @@ When changing persisted data:
 - Handle empty states and offline states clearly.
 - Use snackbars for short success or error feedback instead of inline status blocks when the message is transient.
 - Style every critical or destructive confirmation action in red.
+- Make empty states useful: explain the state briefly and include a contextual action when the next step is obvious.
+- Keep dialogs comfortable on small screens, with scrollable content and actions that remain easy to tap.
+- Preserve visible focus states for custom interactive elements such as tiles, chips, labels, and checklist rows.
+- Avoid viewport-width font scaling for app screens; use stable type sizes with breakpoints when larger screens need more presence.
 - Do not add visual complexity unless it improves the main packing workflow.
 
 ## Security and privacy
@@ -140,6 +145,7 @@ When changing persisted data:
 3. Make the smallest change that fully solves the task.
 4. Avoid unrelated refactors.
 5. Run the relevant linting, formatting, type-checking, and build commands.
+6. Treat Angular build budget warnings as follow-up work unless the task explicitly includes bundle or CSS optimization.
 
 ## When completing a task
 
