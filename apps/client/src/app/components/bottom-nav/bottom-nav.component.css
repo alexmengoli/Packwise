@@ -15,14 +15,20 @@
   border-top: 0.0625rem solid var(--mat-sys-outline-variant);
   border-bottom: 0;
   background: var(--mat-sys-surface-container);
-  padding-inline: 1rem;
   padding-bottom: env(safe-area-inset-bottom);
   min-height: calc(var(--app-bottom-nav-height) + env(safe-area-inset-bottom));
 }
 
 .bottom-nav__item {
-  min-width: 5rem;
+  flex: 1 1 0;
+  min-width: 0;
   height: var(--app-bottom-nav-height);
+}
+
+:host ::ng-deep .bottom-nav .mat-mdc-tab-link-container,
+:host ::ng-deep .bottom-nav .mat-mdc-tab-list,
+:host ::ng-deep .bottom-nav .mat-mdc-tab-links {
+  width: 100%;
 }
 
 :host ::ng-deep .bottom-nav .mdc-tab__content,
@@ -41,12 +47,6 @@
   font: var(--mat-sys-label-medium);
   font-weight: 600;
   line-height: 1.1;
-}
-
-@media (min-width: 640px) {
-  .bottom-nav {
-    padding-inline: 1.5rem;
-  }
 }
 
 @media (min-width: 960px) {
