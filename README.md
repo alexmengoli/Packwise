@@ -11,22 +11,18 @@ network access.
 
 - `apps/client`: plain Angular client application.
 - `packages/shared`: shared TypeScript models and framework-independent domain utilities.
-- `docs`: product notes, current status, and layout decisions.
+- `docs`: product notes, current status, and flow decisions.
 
 ## Documentation
 
-- [Project status](docs/project-status.md): product overview, current scope, MVP notes, and future ideas.
-- [Layout and flow](docs/layout-and-flow.md): navigation, Pack screen, Library, and Settings flow.
+The README stays intentionally short. Detailed product notes live in `docs`.
 
-## Current Status
+- [Project status](docs/project-status.md): current implementation, data model, MVP scope, flow notes, gaps, and future ideas.
 
-- Pack is available at `/` and lets users select one or more activities to generate a live checklist.
-- Library is available at `/library` and supports local create, edit, and delete flows for activities and items.
-- Settings is available at `/settings` for local data export, import, and delete-all operations.
-- Local data is stored on-device in IndexedDB as a single snapshot.
-- Import/export uses a PackWise JSON envelope around the local snapshot.
-- Packed/unpacked checklist state is currently session-only.
-- Optional cloud sync is represented only as a disabled future entry point; it is not required for core use.
+Agent-facing guidance is separate:
+
+- [Root agent instructions](AGENTS.md): repository-wide conventions and product constraints.
+- [Client agent instructions](apps/client/AGENTS.md): Angular, Material, accessibility, and client-specific rules.
 
 ## Commands
 

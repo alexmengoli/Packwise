@@ -4,6 +4,8 @@ PackWise is an offline-first packing organizer for people who want to prepare ba
 
 Users can define their own items, group them by one or more activities, and generate a packing checklist by selecting the relevant activities. The core app should remain usable without an account, network access, or cloud sync.
 
+This document tracks product scope, implementation status, flow decisions, and future ideas.
+
 ## Product Goal
 
 Help users prepare quickly for a specific activity while reducing the chance of forgetting important items.
@@ -182,6 +184,28 @@ Not implemented yet:
 6. The app generates the list of items to bring.
 7. The user uses the generated list as a checklist.
 
+## Layout and Flow Notes
+
+PackWise uses a mobile-first three-destination shell:
+
+- Pack at `/` is the default workspace for selecting activities and seeing the live checklist.
+- Library at `/library` contains item and activity management.
+- Settings at `/settings` contains local import, export, delete-all, and any future optional sync entry points.
+
+The Pack screen should expose the packing workflow directly. Selecting activities updates the
+checklist immediately; there should be no separate "generate list" step. Activities are shown as
+compact selectable tiles with a final create tile, and checklist rows support packed/unpacked
+interaction.
+
+Library keeps catalog management one tap away from Pack. Items and activities can be switched
+within the Library screen, and create/edit flows use focused dialogs.
+
+Settings stays reserved for low-frequency local data operations. Future account, backup, or sync
+features must remain optional and isolated there so the core app works offline.
+
+Dialogs should remain comfortable on small screens, destructive actions should be visibly red, and
+transient success or error feedback should use snackbars.
+
 ## MVP Scope
 
 The first useful version should focus on:
@@ -220,7 +244,6 @@ These ideas are intentionally outside the first MVP unless explicitly prioritize
 
 - Saved custom packing lists
 - Predefined starter lists
-- Import/export
 - PDF export
 - Weight totals
 - Optional account support
