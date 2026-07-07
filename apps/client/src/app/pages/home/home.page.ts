@@ -18,6 +18,7 @@ import type {
 } from '../../components/item-details-dialog/item-details-dialog.types';
 import { ActivityRepositoryService } from '../../services/activity.repository.service';
 import { ItemRepositoryService } from '../../services/item.repository.service';
+import { PackingSessionService } from '../../services/packing-session.service';
 import type { CreateActivityInput, CreateItemInput } from '../../types/data.types';
 import type { PackingItemCategoryGroup, PackingItemCategoryId } from '../../types/packing-item-category.types';
 
@@ -38,10 +39,11 @@ export class HomePage {
   private readonly activityRepository = inject(ActivityRepositoryService);
   private readonly dialog = inject(MatDialog);
   private readonly itemRepository = inject(ItemRepositoryService);
+  private readonly packingSession = inject(PackingSessionService);
 
   // state
-  private readonly selectedActivityIdsSignal = signal<string[]>([]);
-  private readonly packedItemIdsSignal = signal<string[]>([]);
+  private readonly selectedActivityIdsSignal = signal<string[]>(this.packingSession.loadSelectedActivityIds());
+  private readonly packedItemIdsSignal = signal<string[]>(this.packingSession.loadPackedItemIds());
 
   // data
   protected readonly loading = computed(
@@ -146,6 +148,7 @@ export class HomePage {
         ? selectedActivityIds.filter((currentId: string): boolean => currentId !== activityId)
         : [...selectedActivityIds, activityId],
     );
+    this.packingSession.saveSelectedActivityIds(this.selectedActivityIdsSignal());
   }
 
   protected togglePacked(itemId: string): void {
@@ -154,10 +157,12 @@ export class HomePage {
         ? packedItemIds.filter((currentId: string): boolean => currentId !== itemId)
         : [...packedItemIds, itemId],
     );
+    this.packingSession.savePackedItemIds(this.packedItemIdsSignal());
   }
 
   protected clearPackedItems(): void {
     this.packedItemIdsSignal.set([]);
+    this.packingSession.clearPackedItemIds();
   }
 
   protected isPacked(itemId: string): boolean {
@@ -296,6 +301,7 @@ export class HomePage {
     this.selectedActivityIdsSignal.update((selectedActivityIds: string[]): string[] =>
       selectedActivityIds.includes(activityId) ? selectedActivityIds : [...selectedActivityIds, activityId],
     );
+    this.packingSession.saveSelectedActivityIds(this.selectedActivityIdsSignal());
   }
 }
 
