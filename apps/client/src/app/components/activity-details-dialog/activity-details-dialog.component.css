@@ -59,9 +59,9 @@ mat-dialog-actions {
   flex: 0 0 auto;
   width: 2.75rem;
   aspect-ratio: 1;
-  border: 1px solid color-mix(in srgb, var(--selected-color) 68%, #000);
+  border: 1px solid light-dark(color-mix(in srgb, var(--selected-color) 60%, #000), color-mix(in srgb, var(--selected-color) 68%, #000));
   border-radius: 0.5rem;
-  background: var(--selected-color);
+  background: light-dark(color-mix(in srgb, var(--selected-color) 78%, #fff), var(--selected-color));
 }
 
 .color-picker__slider {
@@ -87,13 +87,15 @@ mat-dialog-actions {
   aspect-ratio: 1;
   border: 2px solid transparent;
   border-radius: 0.5rem;
-  background: var(--swatch-color);
+  background: light-dark(color-mix(in srgb, var(--swatch-color) 78%, #fff), var(--swatch-color));
   cursor: pointer;
 }
 
 .swatch-picker__option--selected {
   border-color: var(--mat-sys-on-surface);
-  box-shadow: 0 0 0 2px var(--mat-sys-surface), 0 0 0 4px var(--swatch-color);
+  box-shadow:
+    0 0 0 2px var(--mat-sys-surface),
+    0 0 0 4px light-dark(color-mix(in srgb, var(--swatch-color) 78%, #fff), var(--swatch-color));
 }
 
 @media (min-width: 520px) {
