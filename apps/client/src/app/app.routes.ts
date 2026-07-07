@@ -1,16 +1,19 @@
 import { Routes } from '@angular/router';
+import { HomePage } from './pages/home/home.page';
+import { LibraryPage } from './pages/library/library.page';
+import { SettingsPage } from './pages/settings/settings.page';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./pages/home/home.page').then((module) => module.HomePage),
+    component: HomePage,
   },
   {
     path: 'library',
-    loadComponent: () => import('./pages/library/library.page').then((module) => module.LibraryPage),
+    component: LibraryPage,
   },
   {
     path: 'settings',
-    loadComponent: () => import('./pages/settings/settings.page').then((module) => module.SettingsPage),
+    component: SettingsPage,
   },
 ];
