@@ -3,16 +3,16 @@
 <mat-dialog-content>
   <form class="details-form" [formGroup]="form">
     <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
+      <mat-label>Activity name</mat-label>
       <input matInput formControlName="name" autocomplete="off" />
       @if (form.controls.name.hasError('required')) {
-        <mat-error>Name is required.</mat-error>
+        <mat-error>Activity name is required.</mat-error>
       }
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" rows="3"></textarea>
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notes" rows="3"></textarea>
     </mat-form-field>
 
     <div class="picker-group">
@@ -40,7 +40,7 @@
       <div class="color-picker" [style.--selected-color]="hslColor(form.controls.hue.value)">
         <span class="color-picker__preview" aria-hidden="true"></span>
         <label class="color-picker__slider">
-          <span class="color-picker__value">Hue {{ form.controls.hue.value }}</span>
+          <span class="color-picker__value">Color tone {{ form.controls.hue.value }}</span>
           <input
             type="range"
             min="0"
@@ -71,5 +71,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
-  <button mat-flat-button type="button" (click)="save()">{{ isEditing ? 'Save' : 'Create' }}</button>
+  <button mat-flat-button type="button" (click)="save()">{{ isEditing ? 'Save changes' : 'Add activity' }}</button>
 </mat-dialog-actions>

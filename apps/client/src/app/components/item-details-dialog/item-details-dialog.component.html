@@ -3,26 +3,26 @@
 <mat-dialog-content>
   <form class="details-form" [formGroup]="form">
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Name</mat-label>
+      <mat-label>Item name</mat-label>
       <input matInput formControlName="name" autocomplete="off" />
       @if (form.controls.name.hasError('required')) {
-        <mat-error>Name is required.</mat-error>
+        <mat-error>Item name is required.</mat-error>
       }
     </mat-form-field>
 
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" rows="3"></textarea>
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notes" rows="3"></textarea>
     </mat-form-field>
 
     <section class="details-form__activity" aria-labelledby="item-activity-section-title">
-      <h3 id="item-activity-section-title" class="details-form__section-title">Activity</h3>
+      <h3 id="item-activity-section-title" class="details-form__section-title">Packing rules</h3>
 
-      <mat-checkbox formControlName="mandatory">Use for every activity</mat-checkbox>
+      <mat-checkbox formControlName="mandatory">Always pack this item</mat-checkbox>
 
       @if (!form.controls.mandatory.value) {
         <mat-form-field appearance="outline" subscriptSizing="dynamic">
-          <mat-label>Activities</mat-label>
+          <mat-label>Used for activities</mat-label>
           <mat-select formControlName="activityIds" multiple>
             @for (activity of activities(); track activity.id) {
               <mat-option [value]="activity.id">{{ activity.name }}</mat-option>
@@ -41,5 +41,5 @@
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
-  <button mat-flat-button type="button" (click)="save()">{{ isEditing ? 'Save' : 'Create' }}</button>
+  <button mat-flat-button type="button" (click)="save()">{{ isEditing ? 'Save changes' : 'Add item' }}</button>
 </mat-dialog-actions>

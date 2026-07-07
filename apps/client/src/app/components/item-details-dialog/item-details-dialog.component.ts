@@ -42,7 +42,7 @@ export class ItemDetailsDialogComponent {
   protected readonly isEditing: boolean = Boolean(this.data.item);
   protected readonly form = this.formBuilder.group({
     name: [this.data.item?.name ?? '', [Validators.required]],
-    description: [this.data.item?.description ?? ''],
+    notes: [this.data.item?.notes ?? ''],
     categoryId: [this.data.item?.categoryId ?? ''],
     mandatory: [this.data.item?.mandatory ?? false],
     activityIds: [this.data.item?.activityIds ?? this.data.activityIds ?? []],
@@ -62,7 +62,7 @@ export class ItemDetailsDialogComponent {
     const value = this.form.getRawValue();
     const input: CreateItemInput = {
       name: value.name.trim(),
-      description: optionalTrim(value.description),
+      notes: optionalTrim(value.notes),
       categoryId: optionalTrim(value.categoryId),
       mandatory: value.mandatory,
       activityIds: value.mandatory ? [] : value.activityIds,

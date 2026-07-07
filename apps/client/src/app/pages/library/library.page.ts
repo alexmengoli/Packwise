@@ -92,7 +92,7 @@ export class LibraryPage {
   protected deleteItem(item: Item): void {
     this.confirmDelete({
       title: 'Delete item?',
-      message: `Delete ${item.name} from your library?`,
+      message: `Delete ${item.name}? It will also be removed from saved trip checklists.`,
     }).subscribe((confirmed: boolean | undefined): void => {
       if (!confirmed) {
         return;
@@ -284,7 +284,7 @@ export class LibraryPage {
   private itemMatchesSearch(item: Item, searchTerm: string): boolean {
     const fields: string[] = [
       item.name,
-      item.description ?? '',
+      item.notes ?? '',
       item.categoryId ?? '',
       this.categoryName(item) ?? '',
     ];

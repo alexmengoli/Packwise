@@ -11,6 +11,7 @@ import type { ConfirmationDialogData } from '../../components/confirmation-dialo
 import { ActivityRepositoryService } from '../../services/activity.repository.service';
 import { DataPortabilityService } from '../../services/data-portability.service';
 import { ItemRepositoryService } from '../../services/item.repository.service';
+import { TripRepositoryService } from '../../services/trip.repository.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -25,6 +26,7 @@ export class SettingsPage {
   private readonly dialog = inject(MatDialog);
   private readonly itemRepository = inject(ItemRepositoryService);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly tripRepository = inject(TripRepositoryService);
 
   // state
   protected readonly deleting = signal<boolean>(false);
@@ -37,7 +39,9 @@ export class SettingsPage {
   );
   protected readonly hasLocalData = computed(
     (): boolean =>
-      this.activityRepository.activities().length > 0 || this.itemRepository.items().length > 0,
+      this.activityRepository.activities().length > 0 ||
+      this.itemRepository.items().length > 0 ||
+      this.tripRepository.trips().length > 0,
   );
 
   protected exportData(): void {
@@ -77,7 +81,11 @@ export class SettingsPage {
         .text()
         .then((json: string): Promise<void> => this.dataPortability.importJson(json))
         .then((): Promise<void[]> =>
-          Promise.all([this.activityRepository.refresh(), this.itemRepository.refresh()]),
+          Promise.all([
+            this.activityRepository.refresh(),
+            this.itemRepository.refresh(),
+            this.tripRepository.refresh(),
+          ]),
         )
         .then((): void => this.showFeedback('Your local Packwise data was imported.'))
         .catch((error: unknown): void => this.handleError(error, 'Could not import that JSON file.'))
@@ -92,8 +100,9 @@ export class SettingsPage {
 
     const data: ConfirmationDialogData = {
       title: 'Delete all local data?',
-      message: 'This removes every Packwise activity and item saved on this device. This cannot be undone.',
+      message: 'This removes every Packwise activity, item, and saved trip on this device. This cannot be undone.',
       confirmLabel: 'Delete all',
+      confirmTone: 'danger',
     };
 
     this.dialog
@@ -113,7 +122,11 @@ export class SettingsPage {
         void this.dataPortability
           .deleteAllData()
           .then((): Promise<void[]> =>
-            Promise.all([this.activityRepository.refresh(), this.itemRepository.refresh()]),
+            Promise.all([
+              this.activityRepository.refresh(),
+              this.itemRepository.refresh(),
+              this.tripRepository.refresh(),
+            ]),
           )
           .then((): void => this.showFeedback('All local Packwise data was deleted.'))
           .catch((error: unknown): void => this.handleError(error, 'Could not delete your data.'))

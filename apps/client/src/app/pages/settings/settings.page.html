@@ -2,14 +2,16 @@
   <div class="settings-page__layout">
     <header class="settings-page__hero">
       <h1 class="settings-page__title">Settings</h1>
-      <p class="settings-page__subtitle">Manage the data saved locally on this device.</p>
+      <p class="settings-page__subtitle">Manage the Packwise data saved locally on this device.</p>
     </header>
 
     <mat-card appearance="outlined" class="settings-section">
       <mat-card-content>
         <div class="settings-section__heading">
-          <h2 class="settings-section__title">Data</h2>
-          <p class="settings-section__subtitle">Export a backup or restore a previous Packwise JSON file.</p>
+          <h2 class="settings-section__title">Backup and restore</h2>
+          <p class="settings-section__subtitle">
+            Export a local backup or replace this device with a Packwise JSON file.
+          </p>
         </div>
 
         @if (busy()) {
@@ -25,7 +27,7 @@
             (click)="exportData()"
           >
             <mat-icon aria-hidden="true">download</mat-icon>
-            Export JSON
+            Export
           </button>
 
           <button
@@ -36,7 +38,7 @@
             (click)="importInput.click()"
           >
             <mat-icon aria-hidden="true">upload</mat-icon>
-            Import JSON
+            Import
           </button>
 
           <input
@@ -47,14 +49,13 @@
             (change)="importData($event)"
           />
         </div>
-
       </mat-card-content>
     </mat-card>
 
     <mat-card appearance="outlined" class="settings-section settings-section--sync">
       <mat-card-content>
         <div class="settings-section__heading">
-          <h2 class="settings-section__title">Cloud Sync</h2>
+          <h2 class="settings-section__title">Cloud sync</h2>
           <p class="settings-section__subtitle">
             Optional account sync is planned for backups and multi-device access. Packwise will keep working offline
             without an account.
@@ -63,7 +64,7 @@
 
         <button mat-stroked-button type="button" class="data-actions__button" disabled>
           <mat-icon aria-hidden="true">cloud_sync</mat-icon>
-          Login to sync
+          Sign in to sync
         </button>
       </mat-card-content>
     </mat-card>
@@ -71,9 +72,9 @@
     <mat-card appearance="outlined" class="settings-section settings-section--danger">
       <mat-card-content>
         <div class="settings-section__heading">
-          <h2 class="settings-section__title">Delete All Data</h2>
+          <h2 class="settings-section__title">Delete local data</h2>
           <p class="settings-section__subtitle">
-            Permanently remove every activity and item saved locally on this device.
+            Permanently remove every activity, item, and saved trip on this device.
           </p>
         </div>
 

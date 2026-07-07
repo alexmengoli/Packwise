@@ -31,7 +31,7 @@ export const ITEM_CATEGORIES: readonly ItemCategoryDefinition[] = [
 export interface Item {
   id: string;
   name: string;
-  description?: string;
+  notes?: string;
   categoryId?: ItemCategoryId;
   mandatory: boolean;
   activityIds: string[];

@@ -407,7 +407,7 @@
   line-height: 1.2;
 }
 
-.packing-item__description {
+.packing-item__notes {
   margin: 0 0 0 3rem;
   color: var(--mat-sys-on-surface-variant);
   font-size: 0.925rem;

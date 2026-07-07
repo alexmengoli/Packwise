@@ -93,7 +93,7 @@ export class ActivityDetailsDialogComponent {
   protected readonly initialHue: number = hueFromActivityColor(this.data?.activity?.color);
   protected readonly form = this.formBuilder.group({
     name: [this.data?.activity?.name ?? '', [Validators.required]],
-    description: [this.data?.activity?.description ?? ''],
+    notes: [this.data?.activity?.notes ?? ''],
     icon: [this.data?.activity?.icon ?? DEFAULT_ACTIVITY_ICON],
     hue: [this.initialHue],
   });
@@ -130,7 +130,7 @@ export class ActivityDetailsDialogComponent {
     const value = this.form.getRawValue();
     const input: CreateActivityInput = {
       name: value.name.trim(),
-      description: optionalTrim(value.description),
+      notes: optionalTrim(value.notes),
       icon: optionalTrim(value.icon),
       color: hslColor(value.hue),
     };

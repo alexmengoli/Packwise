@@ -1,7 +1,7 @@
 export interface Activity {
   id: string;
   name: string;
-  description?: string;
+  notes?: string;
   color?: string;
   icon?: string;
   createdAt: string;

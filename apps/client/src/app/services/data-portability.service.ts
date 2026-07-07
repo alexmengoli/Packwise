@@ -92,7 +92,7 @@ function isActivity(data: unknown): data is Activity {
     isRecord(data) &&
     typeof data['id'] === 'string' &&
     typeof data['name'] === 'string' &&
-    isOptionalString(data['description']) &&
+    isOptionalString(data['notes']) &&
     isOptionalString(data['color']) &&
     isOptionalString(data['icon']) &&
     typeof data['createdAt'] === 'string' &&
@@ -105,7 +105,7 @@ function isItem(data: unknown): data is Item {
     isRecord(data) &&
     typeof data['id'] === 'string' &&
     typeof data['name'] === 'string' &&
-    isOptionalString(data['description']) &&
+    isOptionalString(data['notes']) &&
     isOptionalString(data['categoryId']) &&
     typeof data['mandatory'] === 'boolean' &&
     Array.isArray(data['activityIds']) &&
@@ -120,7 +120,7 @@ function isTrip(data: unknown): data is Trip {
     isRecord(data) &&
     typeof data['id'] === 'string' &&
     typeof data['name'] === 'string' &&
-    isOptionalString(data['description']) &&
+    isOptionalString(data['notes']) &&
     Array.isArray(data['activityIds']) &&
     data['activityIds'].every((activityId: unknown): activityId is string => typeof activityId === 'string') &&
     Array.isArray(data['packedItemIds']) &&

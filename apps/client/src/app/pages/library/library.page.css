@@ -162,7 +162,7 @@
 }
 
 .activity-row__name,
-.activity-row__description,
+.activity-row__notes,
 .activity-row__count {
   display: block;
 }
@@ -172,7 +172,7 @@
   overflow-wrap: anywhere;
 }
 
-.activity-row__description {
+.activity-row__notes {
   color: var(--mat-sys-on-surface-variant);
   font-size: 0.925rem;
   line-height: 1.4;
@@ -232,7 +232,7 @@
   white-space: nowrap;
 }
 
-.item-row__description {
+.item-row__notes {
   margin: 0;
   color: var(--mat-sys-on-surface-variant);
   font-size: 0.925rem;

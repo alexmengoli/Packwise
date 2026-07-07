@@ -26,7 +26,7 @@ export class TripDetailsDialogComponent {
   protected readonly isEditing: boolean = Boolean(this.data.trip);
   protected readonly form = this.formBuilder.group({
     name: [this.data.trip?.name ?? '', [Validators.required]],
-    description: [this.data.trip?.description ?? ''],
+    notes: [this.data.trip?.notes ?? ''],
   });
 
   protected cancel(): void {
@@ -43,7 +43,7 @@ export class TripDetailsDialogComponent {
     const value = this.form.getRawValue();
     const input: CreateTripInput = {
       name: value.name.trim(),
-      description: optionalTrim(value.description),
+      notes: optionalTrim(value.notes),
       activityIds: this.data.trip?.activityIds ?? this.data.activityIds,
       packedItemIds: this.data.trip?.packedItemIds ?? this.data.packedItemIds,
     };

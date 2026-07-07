@@ -1,8 +1,8 @@
 <main class="home-page">
   <div class="home-page__layout">
     <header class="home-page__hero">
-      <h1 class="home-page__title">What are you preparing?</h1>
-      <p class="home-page__subtitle">Pick one or more activities and your packing list updates instantly.</p>
+      <h1 class="home-page__title">What are you packing for?</h1>
+      <p class="home-page__subtitle">Choose activities and Packwise builds your checklist instantly.</p>
     </header>
 
     <section class="trip-bar" aria-label="Trip">
@@ -11,8 +11,8 @@
           <mat-icon aria-hidden="true">{{ activeTrip() ? 'luggage' : 'backpack' }}</mat-icon>
         </span>
         <span class="trip-bar__body">
-          <span class="trip-bar__label">{{ activeTrip() ? 'Saved trip' : 'Current pack' }}</span>
-          <span class="trip-bar__name">{{ activeTrip()?.name ?? 'Current pack' }}</span>
+          <span class="trip-bar__label">{{ activeTrip() ? 'Saved trip' : 'Quick pack' }}</span>
+          <span class="trip-bar__name">{{ activeTrip()?.name ?? 'Unsaved checklist' }}</span>
         </span>
       </div>
 
@@ -20,7 +20,7 @@
         @if (activeTrip(); as trip) {
           <button mat-button type="button" (click)="closeTrip()">
             <mat-icon aria-hidden="true">close</mat-icon>
-            Current pack
+            Close trip
           </button>
           <button mat-icon-button type="button" aria-label="Edit trip" title="Edit trip" (click)="editTrip(trip)">
             <mat-icon aria-hidden="true">edit</mat-icon>
@@ -31,7 +31,7 @@
         } @else {
           <button mat-flat-button type="button" (click)="saveCurrentTrip()">
             <mat-icon aria-hidden="true">save</mat-icon>
-            Save trip
+            Save as trip
           </button>
         }
 
@@ -51,7 +51,7 @@
       @if (trips().length === 0) {
         <button mat-menu-item type="button" disabled>
           <mat-icon aria-hidden="true">luggage</mat-icon>
-          <span>No saved trips</span>
+          <span>No trips saved</span>
         </button>
       } @else {
         @for (trip of trips(); track trip.id) {
@@ -68,7 +68,7 @@
         <mat-card-content>
           <div class="home-section__heading">
             <h2 class="home-section__title">Activities</h2>
-            <p class="home-section__subtitle">Select every context that applies to this trip.</p>
+            <p class="home-section__subtitle">Select every activity that belongs on this checklist.</p>
           </div>
 
           @if (loading()) {
@@ -103,7 +103,7 @@
                 <button
                   type="button"
                   class="activity-tile activity-tile--create"
-                  aria-label="Create activity"
+                  aria-label="Add activity"
                   (click)="createActivity()"
                 >
                   <span class="activity-tile__content">
@@ -111,8 +111,8 @@
                       <mat-icon class="activity-tile__icon" aria-hidden="true">add</mat-icon>
                     </span>
                     <span class="activity-tile__text">
-                      <span class="activity-tile__name">New activity</span>
-                      <span class="activity-tile__meta">Add details</span>
+                      <span class="activity-tile__name">Add activity</span>
+                      <span class="activity-tile__meta">Add a new option</span>
                     </span>
                   </span>
                 </button>
@@ -125,15 +125,15 @@
       <mat-card appearance="outlined" class="home-section home-section--packing">
         <mat-card-content>
           <div class="home-section__heading">
-            <h2 class="home-section__title">To bring</h2>
-            <p class="home-section__subtitle">Use the checklist as you pack.</p>
+            <h2 class="home-section__title">Packing list</h2>
+            <p class="home-section__subtitle">Check off items as they go in your bag.</p>
             @if (!loading()) {
               <div class="home-section__actions">
                 <button
                   mat-icon-button
                   type="button"
-                  aria-label="Create item"
-                  title="Create item"
+                  aria-label="Add item"
+                  title="Add item"
                   (click)="createItem()"
                 >
                   <mat-icon aria-hidden="true">add</mat-icon>
@@ -143,8 +143,8 @@
                   <button
                     type="button"
                     class="home-section__reset"
-                    aria-label="Clear checked items"
-                    title="Clear checked items"
+                    aria-label="Uncheck all packed items"
+                    title="Uncheck all packed items"
                     [disabled]="!hasPackedItems()"
                     (click)="clearPackedItems()"
                   >
@@ -163,27 +163,27 @@
           } @else if (selectedActivityIds().length === 0) {
             <div class="home-page__empty">
               <mat-icon aria-hidden="true">checklist</mat-icon>
-              <p>Select one or more activities to see what to bring, or open a saved trip.</p>
+              <p>Select activities to build a packing list, or open a saved trip.</p>
 
               @if (activities().length === 0) {
                 <button mat-stroked-button type="button" (click)="createActivity()">
                   <mat-icon aria-hidden="true">add</mat-icon>
-                  Create activity
+                  Add activity
                 </button>
               } @else if (trips().length > 0) {
                 <button mat-stroked-button type="button" [matMenuTriggerFor]="tripMenu">
                   <mat-icon aria-hidden="true">folder_open</mat-icon>
-                  Open trip
+                  Open saved trip
                 </button>
               }
             </div>
           } @else if (packingItems().length === 0) {
             <div class="home-page__empty">
               <mat-icon aria-hidden="true">inventory_2</mat-icon>
-              <p>No items match the selected activities yet.</p>
+              <p>No items are assigned to the selected activities yet.</p>
               <button mat-stroked-button type="button" (click)="createItem()">
                 <mat-icon aria-hidden="true">add</mat-icon>
-                Create item
+                Add item
               </button>
             </div>
           } @else {
@@ -223,13 +223,13 @@
                               }}</span>
 
                               @if (item.mandatory) {
-                                <span class="packing-item__chip">All activities</span>
+                                <span class="packing-item__chip">Always pack</span>
                               }
                             </span>
                           </mat-checkbox>
 
-                          @if (item.description) {
-                            <p class="packing-item__description">{{ item.description }}</p>
+                          @if (item.notes) {
+                            <p class="packing-item__notes">{{ item.notes }}</p>
                           }
                         </mat-card-content>
                       </mat-card>

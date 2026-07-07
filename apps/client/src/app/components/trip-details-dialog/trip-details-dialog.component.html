@@ -3,21 +3,21 @@
 <mat-dialog-content>
   <form class="trip-form" [formGroup]="form">
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Name</mat-label>
+      <mat-label>Trip name</mat-label>
       <input matInput formControlName="name" autocomplete="off" />
       @if (form.controls.name.hasError('required')) {
-        <mat-error>Name is required.</mat-error>
+        <mat-error>Trip name is required.</mat-error>
       }
     </mat-form-field>
 
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" rows="3"></textarea>
+      <mat-label>Notes</mat-label>
+      <textarea matInput formControlName="notes" rows="3"></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Cancel</button>
-  <button mat-flat-button type="button" (click)="save()">{{ isEditing ? 'Save' : 'Create' }}</button>
+  <button mat-flat-button type="button" (click)="save()">{{ isEditing ? 'Save changes' : 'Save trip' }}</button>
 </mat-dialog-actions>

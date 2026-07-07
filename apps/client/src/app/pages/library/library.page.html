@@ -2,7 +2,7 @@
   <div class="library-page__layout">
     <header class="library-page__hero">
       <h1 class="library-page__title">Library</h1>
-      <p class="library-page__subtitle">Browse the activities and items saved on this device.</p>
+      <p class="library-page__subtitle">Manage the activities and items saved on this device.</p>
     </header>
 
     @if (loading()) {
@@ -20,13 +20,13 @@
           <mat-card-content>
             <div class="library-section__heading">
               <h2 class="library-section__title">Activities</h2>
-              <p class="library-section__subtitle">Every activity saved in your local organizer.</p>
+              <p class="library-section__subtitle">Reusable contexts for your packing lists.</p>
               <button
                 mat-icon-button
                 type="button"
                 class="library-section__action"
-                aria-label="Create activity"
-                title="Create activity"
+                aria-label="Add activity"
+                title="Add activity"
                 (click)="createActivity()"
               >
                 <mat-icon aria-hidden="true">add</mat-icon>
@@ -36,10 +36,10 @@
             @if (activities().length === 0) {
               <div class="library-page__empty library-page__empty--center">
                 <mat-icon aria-hidden="true">hiking</mat-icon>
-                <p>No activities saved yet.</p>
+                <p>No activities yet.</p>
                 <button mat-stroked-button type="button" (click)="createActivity()">
                   <mat-icon aria-hidden="true">add</mat-icon>
-                  Create activity
+                  Add activity
                 </button>
               </div>
             } @else {
@@ -57,8 +57,8 @@
                       <span class="activity-row__name">{{ activity.name }}</span>
                       <span class="activity-row__count">{{ itemCount(activity.id) }} items</span>
 
-                      @if (activity.description) {
-                        <span class="activity-row__description">{{ activity.description }}</span>
+                      @if (activity.notes) {
+                        <span class="activity-row__notes">{{ activity.notes }}</span>
                       }
                     </span>
 
@@ -94,13 +94,13 @@
           <mat-card-content>
             <div class="library-section__heading">
               <h2 class="library-section__title">Items</h2>
-              <p class="library-section__subtitle">Everything available for packing lists.</p>
+              <p class="library-section__subtitle">Reusable things you can add to any list.</p>
               <button
                 mat-icon-button
                 type="button"
                 class="library-section__action"
-                aria-label="Create item"
-                title="Create item"
+                aria-label="Add item"
+                title="Add item"
                 (click)="createItem()"
               >
                 <mat-icon aria-hidden="true">add</mat-icon>
@@ -110,15 +110,15 @@
             @if (items().length === 0) {
               <div class="library-page__empty library-page__empty--center">
                 <mat-icon aria-hidden="true">inventory_2</mat-icon>
-                <p>No items saved yet.</p>
+                <p>No items yet.</p>
                 <button mat-stroked-button type="button" (click)="createItem()">
                   <mat-icon aria-hidden="true">add</mat-icon>
-                  Create item
+                  Add item
                 </button>
               </div>
             } @else {
               <mat-form-field class="item-search" appearance="outline" subscriptSizing="dynamic">
-                <mat-label>Search items</mat-label>
+                <mat-label>Search library items</mat-label>
                 <mat-icon matPrefix aria-hidden="true">search</mat-icon>
                 <input
                   matInput
@@ -144,7 +144,7 @@
               @if (filteredItems().length === 0) {
                 <div class="library-page__empty library-page__empty--center">
                   <mat-icon aria-hidden="true">search_off</mat-icon>
-                  <p>No items match your search.</p>
+                  <p>No library items match your search.</p>
                 </div>
               } @else {
                 <div class="item-list" aria-label="Saved items">
@@ -177,15 +177,15 @@
                         </button>
                       </div>
 
-                      @if (item.description) {
-                        <p class="item-row__description">{{ item.description }}</p>
+                      @if (item.notes) {
+                        <p class="item-row__notes">{{ item.notes }}</p>
                       }
 
                       <div class="item-row__labels" aria-label="Assigned activities">
                         @if (isUnassigned(item)) {
                           <span class="item-row__label item-row__label--unassigned">
                             <mat-icon class="item-row__label-icon" aria-hidden="true">warning</mat-icon>
-                            Unassigned
+                            No activity
                           </span>
                         } @else {
                           @for (activity of itemActivities(item); track activity.id) {
