@@ -84,6 +84,9 @@ export class HomePage {
         item.activityIds.some((activityId: string): boolean => selectedActivityIds.includes(activityId)),
     );
   });
+  protected readonly hasCategorizedPackingItems = computed((): boolean =>
+    this.packingItems().some((item: Item): boolean => Boolean(item.categoryId)),
+  );
   protected readonly packingItemGroups = computed((): PackingItemCategoryGroup[] =>
     groupPackingItemsByCategory(this.packingItems()),
   );

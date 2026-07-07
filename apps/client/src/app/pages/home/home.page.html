@@ -189,8 +189,13 @@
           } @else {
             <div class="home-page__list">
               @for (group of packingItemGroups(); track group.id) {
-                <section class="packing-category" [attr.aria-labelledby]="'packing-category-' + group.id">
-                  <h3 class="packing-category__title" [id]="'packing-category-' + group.id">{{ group.name }}</h3>
+                <section
+                  class="packing-category"
+                  [attr.aria-labelledby]="hasCategorizedPackingItems() ? 'packing-category-' + group.id : null"
+                >
+                  @if (hasCategorizedPackingItems()) {
+                    <h3 class="packing-category__title" [id]="'packing-category-' + group.id">{{ group.name }}</h3>
+                  }
 
                   <div class="packing-category__items">
                     @for (item of group.items; track item.id) {
