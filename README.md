@@ -147,7 +147,7 @@ Android Studio is optional. If you do not have an Android SDK installed, run the
 pnpm android:apk:debug:setup
 ```
 
-That installs Android command-line tools into `.android-sdk/`, uses `.gradle-cache/` for Gradle downloads, syncs Capacitor, and runs the Gradle debug build. Both local tool/cache folders are ignored by Git.
+That installs missing workspace dependencies from `pnpm-lock.yaml`, installs Android command-line tools into `.android-sdk/`, uses local ignored cache folders for tool downloads, syncs Capacitor, and runs the Gradle debug build.
 
 If you already have an SDK, set `ANDROID_HOME` or `ANDROID_SDK_ROOT` to an SDK that includes platform 36, platform-tools, and Android build-tools, then run `pnpm android:apk:debug`.
 

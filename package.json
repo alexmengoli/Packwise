@@ -11,6 +11,7 @@
     "build": "pnpm --filter @packwise/shared build && pnpm --filter @packwise/client build",
     "lint": "pnpm --filter @packwise/client lint",
     "build:shared": "pnpm --filter @packwise/shared build",
+    "android:icons": "powershell -ExecutionPolicy Bypass -File ./scripts/android-generate-icons.ps1",
     "android:apk:debug": "powershell -ExecutionPolicy Bypass -File ./scripts/android-build-debug.ps1",
     "android:apk:debug:setup": "powershell -ExecutionPolicy Bypass -File ./scripts/android-build-debug.ps1 -AcceptAndroidSdkLicenses"
   }

@@ -15,6 +15,11 @@ platforms/
 plugins/
 .android-sdk/
 .gradle-cache/
+.pnpm-store/
+.pnpm-home/
+.corepack/
+.npm-cache/
+.tmp/
 
 # Logs
 *.log
