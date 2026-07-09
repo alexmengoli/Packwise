@@ -77,6 +77,86 @@ Keep concerns separated:
 - The app must continue working when offline or signed out.
 - In the Angular app, prefer standalone components, `loadComponent`, and `bootstrapApplication` over new `NgModule` files.
 
+## Client application guidelines
+
+Write functional, maintainable, performant, and accessible client code following Angular and TypeScript best practices.
+
+### TypeScript
+
+- Use strict type checking.
+- Prefer type inference when the type is obvious.
+- Avoid the `any` type; use `unknown` when the type is uncertain.
+
+### Angular
+
+- Always use standalone components over NgModules.
+- Do not set `standalone: true` inside Angular decorators; it is the default in Angular 20 and newer.
+- Do not set `changeDetection: ChangeDetectionStrategy.OnPush` explicitly; `OnPush` is the default in Angular 22 and newer.
+- Use signals for state management.
+- Implement lazy loading for feature routes.
+- Do not use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead.
+- Use `NgOptimizedImage` for all static images. It does not work for inline base64 images.
+
+### Angular Material
+
+- Prefer Angular Material components and interaction patterns for client UI unless a task explicitly requires a custom control.
+- The client currently uses `@angular/material` `^22.0.3`; check the current Angular Material documentation at https://material.angular.dev/ when choosing component APIs or examples.
+- Use the Coastal Gear Material theme defined in `src/material-theme.scss`: primary `#005f73`, secondary role `#0a9396`, tertiary/accent `#ee9b00`.
+- Keep the Material theme aligned with the device color preference. Use Material 3 `theme-type: color-scheme` with CSS `color-scheme` and `@media (prefers-color-scheme: dark)` rather than requiring a manual in-app theme unless a task explicitly asks for one.
+- Use current Angular Material components such as buttons, icon buttons, icons, cards, lists, dialogs, bottom sheets, menus, form fields, chips, checkboxes, tabs, snack bars, and toolbars where they fit the product flow.
+- Build the main app shell around a mobile-first bottom navigation pattern. If Angular Material does not provide an exact bottom navigation primitive, compose it from current Material buttons and icons with Angular Router state and accessible labels.
+- Keep Material usage mobile-first, accessible, and visually restrained.
+- Do not recreate Material primitives with custom CSS when an Angular Material component already fits the need.
+- Use snack bars for short import, export, delete, save, and error feedback when the message is transient.
+- Keep dialog content scrollable on small screens and let dialog actions wrap into comfortable tap targets.
+
+### Accessibility
+
+- Client UI must pass all AXE checks.
+- Follow WCAG AA minimums, including focus management, color contrast, and ARIA attributes.
+- Custom interactive elements must keep visible `:focus-visible` styles and keyboard activation where relevant.
+
+### Components
+
+- Keep components small and focused on a single responsibility.
+- Use `input()` and `output()` functions instead of decorators.
+- Use `computed()` for derived state.
+- Prefer inline templates for small components.
+- Prefer Signal Forms (`@angular/forms/signals`) for new forms. They are stable in Angular 22 and newer and provide signal-based state, type-safe field access, and schema-based validation.
+- When not using Signal Forms, prefer reactive forms over template-driven forms.
+- Do not use `ngClass`; use `class` bindings instead.
+- Do not use `ngStyle`; use `style` bindings instead.
+- When using external templates or styles, use paths relative to the component TypeScript file.
+
+### State management
+
+- Use signals for local component state.
+- Use `computed()` for derived state.
+- Keep state transformations pure and predictable.
+- Do not use `mutate` on signals; use `update` or `set` instead.
+
+### Templates
+
+- Keep templates simple and avoid complex logic.
+- Use native control flow (`@if`, `@for`, and `@switch`) instead of `*ngIf`, `*ngFor`, and `*ngSwitch`.
+- Use the async pipe to handle observables.
+- Do not assume globals such as `new Date()` are available.
+- Empty states should be actionable when the next step is clear, using existing Material buttons and icons.
+
+### Services
+
+- Design services around a single responsibility.
+- Use the `providedIn: 'root'` option for singleton services.
+- Prefer the `@Service` decorator over `@Injectable({ providedIn: 'root' })` for new singleton services in Angular 22 and newer.
+- Use the `inject()` function instead of constructor injection.
+- Keep browser storage and file import/export logic in services instead of page components where practical.
+
+### Client linting
+
+- The client uses Angular ESLint with flat config in `eslint.config.mjs`.
+- Keep `pnpm lint` working from the repository root.
+- Add explicit dev dependencies for packages imported by the lint config; do not rely on transitive dependencies under pnpm.
+
 When changing persisted data:
 
 - avoid destructive schema changes
