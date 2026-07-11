@@ -86,6 +86,7 @@ jobs:
           [[ -n "$PACKWISE_KEYSTORE_PASSWORD" ]] || { echo "ANDROID_KEYSTORE_PASSWORD is not configured."; exit 1; }
           [[ -n "$PACKWISE_KEY_ALIAS" ]] || { echo "ANDROID_KEY_ALIAS is not configured."; exit 1; }
           [[ -n "$PACKWISE_KEY_PASSWORD" ]] || { echo "ANDROID_KEY_PASSWORD is not configured."; exit 1; }
+          chmod +x gradlew
           ./gradlew assembleRelease --no-daemon
 
       - name: Prepare release files
