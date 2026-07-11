@@ -133,7 +133,7 @@ $coastal-gear-tertiary: (
 @font-face {
   font-style: normal;
   font-weight: 100 900;
-  src: url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('../public/fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
   font-family: 'Inter';
   font-display: swap;
 }
@@ -141,7 +141,7 @@ $coastal-gear-tertiary: (
 @font-face {
   font-style: italic;
   font-weight: 100 900;
-  src: url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('../public/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
   font-family: 'Inter';
   font-display: swap;
 }
@@ -149,7 +149,7 @@ $coastal-gear-tertiary: (
 @font-face {
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/MaterialIcons-Regular.woff2') format('woff2');
+  src: url('../public/fonts/MaterialIcons-Regular.woff2') format('woff2');
   font-family: 'Material Icons';
   font-display: block;
 }

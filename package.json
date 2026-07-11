@@ -9,7 +9,7 @@
   "scripts": {
     "start": "pnpm --filter @packwise/client start",
     "build": "pnpm --filter @packwise/shared build && pnpm --filter @packwise/client build",
-    "build:pages": "pnpm --filter @packwise/shared build && pnpm --filter @packwise/client build --base-href /PackWise/",
+    "build:pages": "pnpm --filter @packwise/shared build && pnpm --filter @packwise/client build --base-href /Packwise/",
     "lint": "pnpm --filter @packwise/client lint",
     "build:shared": "pnpm --filter @packwise/shared build",
     "android:icons": "powershell -ExecutionPolicy Bypass -File ./scripts/android-generate-icons.ps1",
