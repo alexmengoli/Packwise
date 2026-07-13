@@ -5,6 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { Capacitor } from '@capacitor/core';
+import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
 import type { Observable } from 'rxjs';
 import { ConfirmationDialogComponent } from '../../components/confirmation-dialog/confirmation-dialog.component';
 import type { ConfirmationDialogData } from '../../components/confirmation-dialog/confirmation-dialog.types';
@@ -53,8 +56,8 @@ export class SettingsPage {
 
     void this.dataPortability
       .createExportJson()
-      .then((json: string): void => {
-        this.downloadJson(json);
+      .then((json: string): Promise<void> => this.exportJson(json))
+      .then((): void => {
         this.showFeedback('Your local Packwise data was exported.');
       })
       .catch((error: unknown): void => this.handleError(error, 'Could not export your data.'))
@@ -134,15 +137,47 @@ export class SettingsPage {
       });
   }
 
+  private async exportJson(json: string): Promise<void> {
+    if (Capacitor.isNativePlatform()) {
+      await this.shareJson(json);
+      return;
+    }
+
+    this.downloadJson(json);
+  }
+
+  private async shareJson(json: string): Promise<void> {
+    const fileName: string = this.exportFileName();
+    const result = await Filesystem.writeFile({
+      path: fileName,
+      data: json,
+      directory: Directory.Cache,
+      encoding: Encoding.UTF8,
+    });
+
+    await Share.share({
+      title: 'Export Packwise data',
+      text: 'Save or share your Packwise backup.',
+      files: [result.uri],
+      dialogTitle: 'Save Packwise backup',
+    });
+  }
+
   private downloadJson(json: string): void {
     const blob: Blob = new Blob([json], { type: 'application/json' });
     const url: string = URL.createObjectURL(blob);
     const link: HTMLAnchorElement = document.createElement('a');
 
     link.href = url;
-    link.download = `packwise-export-${new Date().toISOString().slice(0, 10)}.json`;
+    link.download = this.exportFileName();
+    document.body.append(link);
     link.click();
+    link.remove();
     URL.revokeObjectURL(url);
+  }
+
+  private exportFileName(): string {
+    return `packwise-export-${new Date().toISOString().slice(0, 10)}.json`;
   }
 
   private handleError(error: unknown, fallbackMessage: string): void {

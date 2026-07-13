@@ -262,6 +262,10 @@
   color: inherit;
 }
 
+.activity-tile--create .activity-tile__meta {
+  display: none;
+}
+
 .activity-tile__content {
   display: grid;
   position: relative;
@@ -290,7 +294,6 @@
 
 .activity-tile__text {
   display: grid;
-  gap: 0.1875rem;
 }
 
 .activity-tile__name,
@@ -300,6 +303,7 @@
 
 .activity-tile__name {
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
 .activity-tile__meta {
@@ -333,7 +337,7 @@
 
 .home-page__list {
   display: grid;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .packing-category {
@@ -376,7 +380,7 @@
 .packing-item mat-card-content {
   display: grid;
   gap: 0.25rem;
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 .packing-item__checkbox {
@@ -421,6 +425,10 @@
 }
 
 @media (min-width: 640px) {
+  .activity-tile--create .activity-tile__meta {
+    display: block;
+  }
+
   .home-page {
     padding-inline: 1.5rem;
   }
