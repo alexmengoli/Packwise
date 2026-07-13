@@ -1,4 +1,4 @@
-name: Release Android APK
+name: Release Android
 
 on:
   push:
@@ -73,7 +73,7 @@ jobs:
           [[ -n "$ANDROID_KEYSTORE_BASE64" ]] || { echo "ANDROID_KEYSTORE_BASE64 is not configured."; exit 1; }
           printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/packwise-release.jks"
 
-      - name: Build signed release APK
+      - name: Build signed Android release files
         working-directory: apps/client/android
         env:
           PACKWISE_VERSION_NAME: ${{ steps.version.outputs.name }}
@@ -87,15 +87,16 @@ jobs:
           [[ -n "$PACKWISE_KEY_ALIAS" ]] || { echo "ANDROID_KEY_ALIAS is not configured."; exit 1; }
           [[ -n "$PACKWISE_KEY_PASSWORD" ]] || { echo "ANDROID_KEY_PASSWORD is not configured."; exit 1; }
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease bundleRelease --no-daemon
 
       - name: Prepare release files
         shell: bash
         run: |
           mkdir release
           cp apps/client/android/app/build/outputs/apk/release/app-release.apk "release/packwise-${{ steps.version.outputs.name }}.apk"
+          cp apps/client/android/app/build/outputs/bundle/release/app-release.aab "release/packwise-${{ steps.version.outputs.name }}.aab"
           cd release
-          sha256sum "packwise-${{ steps.version.outputs.name }}.apk" > SHA256SUMS.txt
+          sha256sum "packwise-${{ steps.version.outputs.name }}.apk" "packwise-${{ steps.version.outputs.name }}.aab" > SHA256SUMS.txt
 
       - name: Create GitHub release
         env:

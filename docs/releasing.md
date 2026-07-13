@@ -33,6 +33,6 @@ git tag -a v1.1.0 -m "Packwise 1.1.0"
 git push origin v1.1.0
 ```
 
-The `Release Android APK` workflow builds the web client, synchronizes Capacitor, generates a signed APK, calculates its SHA-256 checksum, and creates the GitHub release automatically.
+The `Release Android` workflow builds the web client, synchronizes Capacitor, generates a signed APK and Android App Bundle, calculates their SHA-256 checksums, and attaches both files to the same GitHub release automatically.
 
 Patch releases fix bugs (`1.0.1`), minor releases add backward-compatible features (`1.1.0`), and major releases contain breaking changes (`2.0.0`). Never reuse or move a published version tag; create a new patch version instead.

@@ -102,7 +102,7 @@ The debug APK is written to:
 apps/client/android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Signed Android releases can be built and published automatically from version tags. See [the release guide](docs/releasing.md) for the one-time signing setup and release process.
+Signed APK and Android App Bundle releases can be built and published together automatically from version tags. See [the release guide](docs/releasing.md) for the one-time signing setup and release process.
 
 If no Android SDK is installed, the setup command can install the required command-line tools locally:
 
