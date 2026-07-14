@@ -188,6 +188,17 @@
             </div>
           } @else {
             <div class="home-page__list">
+              <span>Packing progress: <strong>{{ packedPackingItemCount() }}/{{ packingItems().length }}</strong></span>
+              <mat-progress-bar
+                mode="determinate"
+                [value]="packingProgress()"
+                [attr.aria-label]="
+                  'Packing progress: ' + packedPackingItemCount() + ' of ' + packingItems().length + ' items packed'
+                "
+              />
+            </div>
+
+            <div class="home-page__list">
               @for (group of packingItemGroups(); track group.id) {
                 <section
                   class="packing-category"

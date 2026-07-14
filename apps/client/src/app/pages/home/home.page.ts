@@ -84,6 +84,14 @@ export class HomePage {
         item.activityIds.some((activityId: string): boolean => selectedActivityIds.includes(activityId)),
     );
   });
+  protected readonly packedPackingItemCount = computed((): number => {
+    const packedItemIds: string[] = this.packedItemIds();
+
+    return this.packingItems().filter((item: Item): boolean => packedItemIds.includes(item.id)).length;
+  });
+  protected readonly packingProgress = computed(
+    (): number => (this.packedPackingItemCount() / this.packingItems().length) * 100,
+  );
   protected readonly hasCategorizedPackingItems = computed((): boolean =>
     this.packingItems().some((item: Item): boolean => Boolean(item.categoryId)),
   );
